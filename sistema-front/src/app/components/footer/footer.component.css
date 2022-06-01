@@ -1,0 +1,14 @@
+footer{
+    color: rgb(83, 79, 79);
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: #005e85;
+
+  }
+
+.container{
+color: #f5f5f5;
+font-size: large;
+}
