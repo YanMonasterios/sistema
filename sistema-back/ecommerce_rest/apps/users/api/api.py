@@ -12,7 +12,8 @@ from apps.users.api.serializers import (
     PasswordSerializer
 )
 
-class UserViewSet(Authentication,viewsets.GenericViewSet):
+#class UserViewSet(Authentication,viewsets.GenericViewSet):
+class UserViewSet(viewsets.GenericViewSet):
     model = User
     serializer_class = UserSerializer
     list_serializer_class = UserListSerializer

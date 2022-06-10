@@ -1,0 +1,23 @@
+from django.db import models
+from simple_history.models import HistoricalRecords
+
+from apps.base.models import BaseModel
+
+#class Indicator(BaseModel):
+
+class Resources(BaseModel):
+
+    name = models.CharField('Nombre', max_length=150, unique= True, blank = False, null = False)
+    last_name = models.CharField('Apellidos', max_length = 255, blank = True, null = True)
+    id_department = models.CharField('Departamento', max_length=150, unique= True, blank = False, null = False)
+    num = models.CharField('Telefono', max_length=150, unique= True, blank = False, null = False)
+    historical = HistoricalRecords()
+
+
+    @property
+    def _history_user(self):
+        return self.changed_by
+
+    @_history_user.setter
+    def _history_user(self, value):
+        self.changed_by = value

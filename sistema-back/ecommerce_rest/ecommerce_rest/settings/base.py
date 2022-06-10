@@ -26,10 +26,15 @@ BASE_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 LOCAL_APPS = [
+    'apps.base',
     'apps.users', 
+    'apps.resources',
+    'apps.cargo',
+
 
 ]
 
@@ -40,7 +45,8 @@ THIRD_APPS = [
 
 ]
 
-INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
+INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS 
+
 
 TOKEN_EXPIRED_AFTER_SECONDS = 900
 
@@ -53,8 +59,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware', 
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'ecommerce_rest.urls'
 
 TEMPLATES = [

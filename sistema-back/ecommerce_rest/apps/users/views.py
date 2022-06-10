@@ -135,6 +135,7 @@ class Login(TokenObtainPairView):
             if login_serializer.is_valid():
                 token,created = Token.objects.get_or_create(user = user)
                 if created:
+                    print('entre')
                     user_serializer = CustomUserSerializer(user)
                     return Response({
                         # 'token': login_serializer.validated_data.get('access'),
