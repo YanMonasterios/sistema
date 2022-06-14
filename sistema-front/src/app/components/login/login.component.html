@@ -4,20 +4,17 @@
         <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
 
         <form *ngIf="!loading" [formGroup]="form">
-
-
-
           <mat-form-field class="ancho" appearance="fill">
               <mat-icon aria-hidden="false" aria-label="Example home icon" class="person">person</mat-icon>
                 <mat-label>Usuario</mat-label>
-                <input type="text" matInput autocomplete="off" formControlName = "usuario">
+                <input type="text" matInput autocomplete="off" formControlName = "username">
             </mat-form-field>
             <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Contraseña</mat-label>
                 <input type="password" matInput autocomplete="off" formControlName = "password">
             </mat-form-field>
             <br>
-            <button class="ancho" (click)="onLogin(form)" mat-raised-button mat-button color="primary" [disabled]="form.invalid">Ingresar</button>
+            <button class="ancho" (click)="onLogin()" mat-raised-button mat-button color="primary" [disabled]="form.invalid">Ingresar</button>
         </form>
     </div>
 </div>

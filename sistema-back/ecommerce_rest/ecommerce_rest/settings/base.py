@@ -34,6 +34,8 @@ LOCAL_APPS = [
     'apps.users', 
     'apps.resources',
     'apps.cargo',
+    'apps.department',
+    'apps.historical',
 
 
 ]

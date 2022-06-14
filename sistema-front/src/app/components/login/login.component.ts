@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import {UsuariosService} from '../../services/usuarios.service';
 import {loginI} from '../../modelos/login.interface';
+import {ResponseI} from '../../modelos/response.interface'; 
 
 
 @Component({
@@ -13,26 +14,33 @@ import {loginI} from '../../modelos/login.interface';
 })
 export class LoginComponent {
   logo = './assets/img/user.png'
-  form: FormGroup;
   loading= false;
 
   constructor(private api:UsuariosService,
               private router: Router,
               private fb:FormBuilder,
               private _snackBar: MatSnackBar) {
-    this.form = fb.group({
-      usuario: ['',Validators.required],
-      password: ['',Validators.required]
-    })
+   
     // this.onLogin(this.form);
   }
+  form = new FormGroup({
+    username: new FormControl ('',[Validators.required]),
+    password: new FormControl ('',[Validators.required])
+  })
 
-  onLogin(form:any){
-    this.api.loginByEmail(form).subscribe(data =>{
-      console.log(data);
+
+  onLogin(){
+  
+    this.api.login(this.form.value).subscribe(data =>{
+      console.log(data.token);
+      let dataResponse:any = data;
+      if(dataResponse.token != ""){
+        localStorage.setItem("token",dataResponse.token);
+        this.router.navigate(['dashboard']);
+        console.log("si paso");
+      }
     })
-
-
+  
   }
   // ngOnInit(): void {
   // }

@@ -7,6 +7,8 @@ import { CreateRoleComponent } from './users/create-role/create-role.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { UsersComponent } from './users/users.component';
 import { FreeComponent } from './freelance/freelance.component';
+import { ContratadoComponent } from './contratado/contratado.component';
+import { FijoComponent } from './fijo/fijo.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:[
@@ -16,6 +18,9 @@ const routes: Routes = [
     { path: 'create-role', component: CreateRoleComponent},
     { path: 'reports', component: ReportsComponent},
     { path: 'freelance', component: FreeComponent},
+    { path: 'contratado', component: ContratadoComponent},
+    { path: 'fijo', component: FijoComponent},
+
   ]}
 ];
 

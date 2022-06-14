@@ -12,6 +12,9 @@ import { CreateUserComponent } from './users/create-user/create-user.component';
 import { CreateRoleComponent } from './users/create-role/create-role.component';
 import { NavComponent } from './nav/nav.component';
 import { FreeComponent } from './freelance/freelance.component';
+import { ContratadoComponent } from './contratado/contratado.component';
+import { FijoComponent } from './fijo/fijo.component';
+
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import { FreeComponent } from './freelance/freelance.component';
     CreateRoleComponent,
     NavComponent,
     FreeComponent,
+    ContratadoComponent,
+    FijoComponent,
   ],
   imports: [
     CommonModule,

@@ -52,5 +52,8 @@ export class UsuariosService {
   return this.http.post<ResponseI>(direccion,form);
 
   }
+  login(data:any): Observable <any>{
+    return this.http.post<any>(`${this.url}`,data);
+  }
 
 }
