@@ -9,6 +9,7 @@ import { UsersComponent } from './users/users.component';
 import { FreeComponent } from './freelance/freelance.component';
 import { ContratadoComponent } from './contratado/contratado.component';
 import { FijoComponent } from './fijo/fijo.component';
+import { CrearUsuarioComponent } from './fijo/crear-usuario/crear-usuario.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:[
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'freelance', component: FreeComponent},
     { path: 'contratado', component: ContratadoComponent},
     { path: 'fijo', component: FijoComponent},
+    { path: 'crear-usuario', component: CrearUsuarioComponent},
 
   ]}
 ];

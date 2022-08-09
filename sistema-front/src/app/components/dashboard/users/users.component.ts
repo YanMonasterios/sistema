@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
 
   listUsuarios:Usuario[] = []
 
-  displayedColumns: string[] = ['username', 'name', 'lastname', 'role','actions'];
+  displayedColumns: string[] = ['name', 'last_name', 'CI','id_department','num','date','role','actions'];
   dataSource!:MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,10 +27,11 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // cargarUsuarios(){
-  //   this.listUsuarios = this._usuarioService.getUsers();
-  //   this.dataSource = new MatTableDataSource(this.listUsuarios);
-  // }
+  EnviarUsuarios(){
+    // this.UsuariosService.post('http://localhost:8000/fijos')
+    // this.listUsuarios = this._usuarioService.getUsers();
+    // this.dataSource = new MatTableDataSource(this.listUsuarios);
+  }
 
   // eliminarUsuario(index:number){
   //   this._usuarioService.deleteUser(index);

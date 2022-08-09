@@ -11,7 +11,11 @@ import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,12 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    MatIconModule
+    MatIconModule,
+   ToastrModule.forRoot(),
+  MatPaginatorModule,
+  MatTableModule,
+  HttpClientModule,
+  MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

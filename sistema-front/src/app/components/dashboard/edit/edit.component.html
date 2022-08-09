@@ -1,0 +1,125 @@
+<!-- <p>{{data.id}}</p>  -->
+ <!-- <div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Numero</th>
+            <th scope="col">Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="Let fijos of fijos">
+            <th scope="row"> {{data.id}} </th>
+            <td> <button type="button" name="button" class="btn btn-primary">Editar</button>
+        </tr>
+    </tbody>
+</table>
+</div>  -->
+
+<!-- <h1>Editar</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Hola123344</mat-label>
+        <input matInput placeholder="placeholder" />
+        <mat-icon matSuffix>sentiment_very</mat-icon>
+        <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+</div> -->
+
+ <h1>Editar</h1>
+ <form [formGroup]="form">
+  <div class="example-container"> 
+    <mat-form-field class="margen" appearance="fill">
+     <mat-label>Nombre</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+     <mat-label>Apellido</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "last_name">
+    </mat-form-field>
+  </div>
+  <div class="example-container"> 
+    <mat-form-field appearance="fill">
+     <mat-label>Cedula</mat-label>
+        <input matInput input type="text" matInput autocomplete="off" formControlName = "CI">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Departamento</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "id_department">
+    </mat-form-field>
+  </div>
+  <div class="example-container"> 
+    <mat-form-field appearance="fill">
+    <mat-label>Telefono</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "num">
+  </mat-form-field> 
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de ingreso</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "date">
+  </mat-form-field> 
+  </div>
+  <div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de creacion</mat-label>
+    <input matInput input type="hiden" matInput autocomplete="off" formControlName = "created_date" value={{current_timestamp}}>
+  </mat-form-field> 
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="one">Operaciones</mat-option>
+      <mat-option value="two">Mercadeo</mat-option>
+      <mat-option value="two">Finanzas</mat-option>
+      <mat-option value="two">Gestion humana</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <!-- <div class="example-container">
+    <mat-form-field class="margen" hintLabel="Max 10 characters" appearance="fill">
+      <mat-label>Enter some input</mat-label>
+      <input matInput #input maxlength="10" placeholder="Ex. Nougat">
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Select me</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="example-container">
+    <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+      <mat-label>Enter some input</mat-label>
+      <input matInput #input maxlength="10" placeholder="Ex. Nougat">
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Select me</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+  </div> -->
+  <div class="example-button-row" >
+    <button type="submit" (click)="update()" mat-raised-button mat-button color="primary" [disabled]="form.invalid">Editar</button>
+</div>
+</form>
+
+
+
+
+
+
+
+

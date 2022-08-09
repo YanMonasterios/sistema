@@ -1,6 +1,6 @@
 <div class="container">
     <mat-toolbar>
-        <span>Nuevo Usuario</span>
+        <span>Nuevo Recurso</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
@@ -8,8 +8,8 @@
             <mat-grid-list cols="4" rowHeight="100px">
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field appearance="legacy" class="ancho">
-                        <mat-label>Username</mat-label>
-                        <input matInput placeholder="Ingrese un Username" autocomplete="off">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Ingrese un Nombre" autocomplete="off">
                         <mat-hint>Hint</mat-hint>
                       </mat-form-field>
                 </mat-grid-tile>
@@ -18,29 +18,37 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field appearance="legacy" class="ancho">
-                        <mat-label>Nombre del Usuario</mat-label>
-                        <input matInput placeholder="Ingrese un Nombre" autocomplete="off">
-                        <mat-hint>Hint</mat-hint>
-                      </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="2" [rowspan]="1"> 
-                    <mat-form-field appearance="legacy" class="ancho">
-                        <mat-label>Apellido del Usuario</mat-label>
+                        <mat-label>Apellido</mat-label>
                         <input matInput placeholder="Ingrese un Apellido" autocomplete="off">
                         <mat-hint>Hint</mat-hint>
                       </mat-form-field>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+                    <mat-form-field appearance="legacy" class="ancho">
+                        <mat-label>Cedula</mat-label>
+                        <input matInput placeholder="Ingrese una Cedula" autocomplete="off">
+                        <mat-hint>Hint</mat-hint>
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+                    <mat-form-field appearance="legacy" class="ancho">
+                        <mat-label>Fecha de ingreso</mat-label>
+                        <input matInput placeholder="Ingrese fecha" autocomplete="off">
+                        <mat-hint>Hint</mat-hint>
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field class="ancho">
-                        <mat-label>Rol</mat-label>
+                        <mat-label>Personal</mat-label>
                         <mat-select>
-                          <mat-option *ngFor="let item of listRoles" [value]="item">{{item}}</mat-option>
+                          <mat-option>fijos</mat-option>
+                          <mat-option>Contratado</mat-option>
                         </mat-select>
                       </mat-form-field>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
-                    <button mat-raised-button style="margin-right: 20px;">Volver</button>
-                    <button mat-raised-button color="primary">Aceptar</button>
+                    <button mat-raised-button style="margin-right: 20px;" routerLink="/dashboard/users">Volver</button>
+                    <button mat-raised-button color="primary" routerLink="/dashboard/users">Aceptar</button>
                 </mat-grid-tile>
             </mat-grid-list>
         </form>

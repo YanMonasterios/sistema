@@ -14,7 +14,15 @@ import { NavComponent } from './nav/nav.component';
 import { FreeComponent } from './freelance/freelance.component';
 import { ContratadoComponent } from './contratado/contratado.component';
 import { FijoComponent } from './fijo/fijo.component';
-
+import { EditComponent } from './edit/edit.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSortModule} from '@angular/material/sort';
+import { CrearUsuarioComponent } from './fijo/crear-usuario/crear-usuario.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -30,11 +38,22 @@ import { FijoComponent } from './fijo/fijo.component';
     FreeComponent,
     ContratadoComponent,
     FijoComponent,
+    EditComponent,
+    CrearUsuarioComponent,
+    
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatPaginatorModule, 
+    MatTooltipModule, 
+    MatSortModule,
+    MatSelectModule,
+
+    
   ]
 })
 export class DashboardModule { }

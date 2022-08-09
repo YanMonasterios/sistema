@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {UsuariosService} from '../../services/usuarios.service';
 import {loginI} from '../../modelos/login.interface';
 import {ResponseI} from '../../modelos/response.interface'; 
-
+ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,9 @@ export class LoginComponent {
   constructor(private api:UsuariosService,
               private router: Router,
               private fb:FormBuilder,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+             private toastr: ToastrService
+              ) {
    
     // this.onLogin(this.form);
   }
@@ -32,15 +34,22 @@ export class LoginComponent {
   onLogin(){
   
     this.api.login(this.form.value).subscribe(data =>{
+      this.toastr.success('Hello world!', 'Toastr fun!');
       console.log(data.token);
       let dataResponse:any = data;
       if(dataResponse.token != ""){
         localStorage.setItem("token",dataResponse.token);
         this.router.navigate(['dashboard']);
         console.log("si paso");
+       
       }
     })
   
+  }
+
+  onLogout(){
+
+    
   }
   // ngOnInit(): void {
   // }
