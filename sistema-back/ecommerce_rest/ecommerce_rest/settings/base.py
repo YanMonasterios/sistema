@@ -36,6 +36,8 @@ LOCAL_APPS = [
     'apps.cargo',
     'apps.department',
     'apps.historical',
+    'apps.hired',
+    'apps.fijos',
 
 
 ]
@@ -44,6 +46,7 @@ THIRD_APPS = [
     'rest_framework', 
     'rest_framework.authtoken',
     'simple_history',
+    
 
 ]
 
@@ -64,8 +67,18 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]      
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+       'http://localhost:',
+)
 ROOT_URLCONF = 'ecommerce_rest.urls'
 
 TEMPLATES = [
