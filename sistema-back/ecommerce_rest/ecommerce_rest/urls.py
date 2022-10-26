@@ -23,6 +23,8 @@ urlpatterns = [
     path('usuario/', include('apps.users.api.urls')),
     path('hired/', include('apps.hired.api.urls')),
     path('fijos/', include('apps.fijos.api.routers')),
+    path('inactivos/', include('apps.inactivos.api.routers')),
+    path('benefits/', include('apps.benefits.api.routers')),
     path('',Login.as_view(), name = 'Login'),
     path('refresh-token/',UserToken.as_view(), name = 'refresh_token'),
     path('logout/', Logout.as_view(), name = 'Logout')

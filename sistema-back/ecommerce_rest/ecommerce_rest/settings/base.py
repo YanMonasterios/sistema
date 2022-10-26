@@ -38,6 +38,8 @@ LOCAL_APPS = [
     'apps.historical',
     'apps.hired',
     'apps.fijos',
+    'apps.benefits',
+    'apps.inactivos',
 
 
 ]
@@ -50,10 +52,11 @@ THIRD_APPS = [
 
 ]
 
+
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS 
 
 
-TOKEN_EXPIRED_AFTER_SECONDS = 900
+TOKEN_EXPIRED_AFTER_SECONDS = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

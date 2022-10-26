@@ -16,6 +16,12 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     LoginComponent,
     FooterComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +42,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   MatTableModule,
   HttpClientModule,
   MatFormFieldModule,
+  MatGridListModule,
+  MatCardModule,
+  MatMenuModule,
+  MatButtonModule,
+  LayoutModule,
+  ],
+
+  exports: [
+    AppComponent,
+    LoginComponent,
+    FooterComponent,
+    HeaderComponent,
+    HomeComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

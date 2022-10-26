@@ -1,4 +1,4 @@
-:host {
+/* :host {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -11,4 +11,44 @@
 
   .example-container{
     display: table-caption;
+  } */
+
+  table {
+    width: 100%;
   }
+  
+  .container{
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+    /* align-items: center; */
+    flex-wrap: nowrap;
+    height: 30%;
+    align-content: space-around;
+    justify-content: space-around;
+    margin-top: 8%;
+  }
+  
+  
+  th {
+    width: 5%;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .space
+    {
+      flex: 1 1 auto;
+    }
+
+  .slide-inactive{
+    padding: 0px 0px 0px 100px;
+  }
+  

@@ -1,7 +1,8 @@
 [
     {
         "nombre": "Inicio",
-        "redirect": "/dashboard"
+        "redirect": "/dashboard",
+        "icon": "<mat-icon>home</mat-icon>"
     },
     {
         "nombre": "Usuarios",

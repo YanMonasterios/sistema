@@ -1,6 +1,6 @@
 <div class="container">
     <mat-toolbar>
-        <span>Nuevo Recurso</span>
+        <span>Nuevo Usuario</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 10px;">
@@ -8,7 +8,7 @@
             <mat-grid-list cols="4" rowHeight="100px">
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field appearance="legacy" class="ancho">
-                        <mat-label>Nombre</mat-label>
+                        <mat-label>Usuario</mat-label>
                         <input matInput placeholder="Ingrese un Nombre" autocomplete="off">
                         <mat-hint>Hint</mat-hint>
                       </mat-form-field>
@@ -18,7 +18,7 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field appearance="legacy" class="ancho">
-                        <mat-label>Apellido</mat-label>
+                        <mat-label>Correo</mat-label>
                         <input matInput placeholder="Ingrese un Apellido" autocomplete="off">
                         <mat-hint>Hint</mat-hint>
                       </mat-form-field>
@@ -32,12 +32,12 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field appearance="legacy" class="ancho">
-                        <mat-label>Fecha de ingreso</mat-label>
-                        <input matInput placeholder="Ingrese fecha" autocomplete="off">
+                        <mat-label>Contraseña</mat-label>
+                        <input type="password" matInput placeholder="Ingrese contraseña" autocomplete="off">
                         <mat-hint>Hint</mat-hint>
                       </mat-form-field>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+                <!-- <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <mat-form-field class="ancho">
                         <mat-label>Personal</mat-label>
                         <mat-select>
@@ -45,7 +45,7 @@
                           <mat-option>Contratado</mat-option>
                         </mat-select>
                       </mat-form-field>
-                </mat-grid-tile>
+                </mat-grid-tile> -->
                 <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                     <button mat-raised-button style="margin-right: 20px;" routerLink="/dashboard/users">Volver</button>
                     <button mat-raised-button color="primary" routerLink="/dashboard/users">Aceptar</button>

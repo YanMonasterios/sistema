@@ -47,6 +47,10 @@ export class LoginComponent {
   
   }
 
+  error() {
+    this._snackBar.open('Usuario o contraseña ingresados son invalidos', '',)
+  }
+
   onLogout(){
 
     

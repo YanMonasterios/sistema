@@ -47,11 +47,11 @@ export class UsuariosService {
 
   constructor(private http:HttpClient) { }
 
-  // loginByEmail(form:loginI):Observable<ResponseI>{
-  // let direccion = this.url + "usuario";
-  // return this.http.post<ResponseI>(direccion,form);
 
-  // }
+  public getAllUsers(): Observable<any>{
+    return this.http.get(`${this.url}usuario/`);
+   }
+
   login(data:any): Observable <any>{
     return this.http.post<any>(`${this.url}`,data);
   }

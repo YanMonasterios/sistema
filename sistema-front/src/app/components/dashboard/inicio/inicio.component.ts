@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { map } from 'rxjs/operators';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 // import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,8 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class InicioComponent implements OnInit {
   myDate: Date = new Date();
-
-  constructor() { }
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
   }

@@ -4,6 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -22,9 +23,8 @@ export class CrearUsuarioComponent implements OnInit {
     form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
-      CI: new FormControl('', [Validators.required]),
       id_department: new FormControl('', [Validators.required]),
-      num: new FormControl('', [Validators.required]),
+      salary: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required]),
       created_at: new FormControl(`${this.current_timestamp}`),
     })

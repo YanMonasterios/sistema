@@ -1,3 +1,4 @@
+from datetime import date
 from rest_framework import serializers
 
 from apps.fijos.models import Fijos
@@ -14,12 +15,16 @@ class FijosSerializer(serializers.ModelSerializer):
             'id': instance.id,
             'name': instance.name,
             'CI': instance.CI,
+            'salary': instance.salary,
             'last_name': instance.last_name,
             'id_department': instance.id_department,
             'num': instance.num,
-            'date': instance.date
+            'date': instance.date,
+            'salary': instance.salary,
 
         }
+          
+print(date)
 class FijosRetrieveSerializer(serializers.ModelSerializer):
 
     class Meta:

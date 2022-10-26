@@ -12,47 +12,41 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  fijo: any[] = [];
+  dataSource = new MatTableDataSource(this.fijo);
+  displayedColumns: string[] = [ 'id','username', 'email'];
 
-  listUsuarios:Usuario[] = []
+@ViewChild(MatPaginator) paginator!: MatPaginator;  
+@ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['name', 'last_name', 'CI','id_department','num','date','role','actions'];
-  dataSource!:MatTableDataSource<any>;
+constructor(private service: UsuariosService,
+            ) {}
+            //public dialog: MatDialog ){}
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+ngOnInit(): void {
+  
+  this.cargarData();
+ // this.dataSource.paginator = this.paginator;
+ 
+}
 
+ngAfterViewInit() {
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
 
-  constructor(private _usuarioService: UsuariosService,private _snackBar: MatSnackBar) { }
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
-  ngOnInit(): void {
-  }
-
-  EnviarUsuarios(){
-    // this.UsuariosService.post('http://localhost:8000/fijos')
-    // this.listUsuarios = this._usuarioService.getUsers();
-    // this.dataSource = new MatTableDataSource(this.listUsuarios);
-  }
-
-  // eliminarUsuario(index:number){
-  //   this._usuarioService.deleteUser(index);
-  //   this.cargarUsuarios();
-
-  //   this._snackBar.open('Usuario Eliminado','',{
-  //     duration: 1500,
-  //     horizontalPosition: 'center',
-  //     verticalPosition: 'bottom'
-  //   });
-  // }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
+cargarData(){
+  this.service.getAllUsers().subscribe(result => {
+    this.fijo = result.rows;
+    console.log(this.fijo);
+    this.dataSource.data = [];
+    this.dataSource.data = this.fijo;
+  });
+}
 
 }

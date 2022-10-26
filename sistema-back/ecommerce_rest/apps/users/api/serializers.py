@@ -62,7 +62,8 @@ class UserListSerializer(serializers.ModelSerializer):
         return {
             'id': instance['id'],
             'username': instance['username'],
-            'email': instance['email']
+            'email': instance['email'],
+            'last_name': instance['last_name']
         }
 
 

@@ -10,6 +10,14 @@ import { FreeComponent } from './freelance/freelance.component';
 import { ContratadoComponent } from './contratado/contratado.component';
 import { FijoComponent } from './fijo/fijo.component';
 import { CrearUsuarioComponent } from './fijo/crear-usuario/crear-usuario.component';
+import {prestacionComponent} from './prestaciones/prestacion.component';
+import {EditCalculoComponent} from './edit-calculo/edit-calculo.component';
+import { PdfComponent } from './pdf/pdf.component'
+import { AnticipoComponent } from './anticipo/anticipo.component';
+import { VacacionesComponent } from './vacaciones/vacaciones.component';
+import { InactivosComponent } from './inactivos/inactivos.component';
+import { ReciboComponent } from './recibo/recibo.component';
+
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:[
@@ -22,6 +30,14 @@ const routes: Routes = [
     { path: 'contratado', component: ContratadoComponent},
     { path: 'fijo', component: FijoComponent},
     { path: 'crear-usuario', component: CrearUsuarioComponent},
+    { path: 'prestaciones', component: prestacionComponent},
+    { path: 'edit-calculo', component: EditCalculoComponent},
+    { path: 'pdf', component: PdfComponent },
+    { path: 'Anticipo', component: AnticipoComponent },
+    { path: 'vacaciones', component: VacacionesComponent },
+    { path: 'inactivos', component: InactivosComponent },
+    { path: 'recibo', component: ReciboComponent },
+
 
   ]}
 ];

@@ -75,7 +75,7 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser, MultiPartParser
-
+from apps.fijos.models import Fijos
 from apps.fijos.api.serializers import FijosSerializer, FijosRetrieveSerializer
 
 class FijosViewSet(viewsets.ModelViewSet):
@@ -127,3 +127,4 @@ class FijosViewSet(viewsets.ModelViewSet):
             fijos.save()
             return Response({'message':'empleado fijo eliminado correctamente!'}, status=status.HTTP_200_OK)
             return Response({'error':'No existe un empleado fijo con estos datos!'}, status=status.HTTP_400_BAD_REQUEST)
+        

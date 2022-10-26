@@ -10,6 +10,7 @@ class Fijos(BaseModel):
     name = models.CharField('Nombre', max_length=150, unique= True, blank = False, null = False)
     last_name = models.CharField('Apellidos', max_length = 255, blank = True, null = True)
     CI = models.CharField('Cedula', max_length = 255, blank = True, null = True)
+    salary = models.FloatField('Salario', max_length = 255, blank = True, null = True)
     id_department = models.CharField('Departamento', max_length=150, unique= False, blank = False, null = False)
     num = models.CharField('Telefono', max_length=150, unique= True, blank = False, null = False)
     date = models.DateField('Fecha de ingreso', unique= False, blank = False, null = True )  

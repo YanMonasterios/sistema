@@ -18,29 +18,17 @@ export class FijosServices {
    }
    
    createFijos(data:any): Observable<any>{
-    console.log(data) 
     return this.http.post<any>(`${this.API_FIJOS}fijos/fijos/`,data); 
    }
 
-   updateFijos( id:any): Observable<any>{
-    console.log(id)   
-  return this.http.put<any>(`${this.API_FIJOS}fijos/fijos/${id}`, id);
+   updateFijos( data:any,id:any): Observable<any>{
+  return this.http.put<any>(`${this.API_FIJOS}fijos/fijos/${id}/`, data);
    } 
 
-  // putFijos(form: FijosI ):Observable<ResponseI>{
-  //   let direccion = this.API_FIJOS + "Fijos";
-  //   return this.http.put<ResponseI>(direccion, form)
- 
-  // }
-
-   deleteFijos(id:number): Observable<any>{
-    return this.http.delete(this.API_FIJOS);
+   deleteFijos(data:any,id:number): Observable<any>{
+    return this.http.delete(`${this.API_FIJOS}fijos/fijos/${id}/`, data);
    }
 
- // public post(API_FIJOS:string,body){
-   // return this.http.post(API_FIJOS,body); 
-
- // }
 
 
 

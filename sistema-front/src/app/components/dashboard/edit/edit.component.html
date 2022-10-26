@@ -33,8 +33,8 @@
 
 </div> -->
 
- <h1>Editar</h1>
- <form [formGroup]="form">
+<h1 mat-dialog-title>Editar</h1>
+<form [formGroup]="form">
   <div class="example-container"> 
     <mat-form-field class="margen" appearance="fill">
      <mat-label>Nombre</mat-label>
@@ -42,84 +42,36 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
      <mat-label>Apellido</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "last_name">
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "last_name"> 
     </mat-form-field>
   </div>
   <div class="example-container"> 
     <mat-form-field appearance="fill">
-     <mat-label>Cedula</mat-label>
-        <input matInput input type="text" matInput autocomplete="off" formControlName = "CI">
+     <mat-label>Salario</mat-label>
+        <input matInput input type="number" matInput autocomplete="off" formControlName = "salary">
     </mat-form-field>
     <mat-form-field appearance="fill">
-        <mat-label>Departamento</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "id_department">
+      <mat-label>Departamento</mat-label>
+      <mat-select formControlName = "id_department">
+        <mat-option *ngFor="let item of departamento"  [value]="item">{{item}}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <div class="example-container"> 
     <mat-form-field appearance="fill">
-    <mat-label>Telefono</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "num">
-  </mat-form-field> 
+      <mat-label>Cedula</mat-label>
+         <input matInput input type="number" matInput autocomplete="off" formControlName = "CI">
+     </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Fecha de ingreso</mat-label>
     <input matInput input type="text" matInput autocomplete="off" formControlName = "date">
   </mat-form-field> 
   </div>
-  <div class="example-container">
-  <mat-form-field appearance="fill">
-    <mat-label>Fecha de creacion</mat-label>
-    <input matInput input type="hiden" matInput autocomplete="off" formControlName = "created_date" value={{current_timestamp}}>
-  </mat-form-field> 
-  <mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
-    <mat-select>
-      <mat-option value="one">Operaciones</mat-option>
-      <mat-option value="two">Mercadeo</mat-option>
-      <mat-option value="two">Finanzas</mat-option>
-      <mat-option value="two">Gestion humana</mat-option>
-    </mat-select>
-  </mat-form-field>
-  </div>
-  <!-- <div class="example-container">
-    <mat-form-field class="margen" hintLabel="Max 10 characters" appearance="fill">
-      <mat-label>Enter some input</mat-label>
-      <input matInput #input maxlength="10" placeholder="Ex. Nougat">
-      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Select me</mat-label>
-      <mat-select>
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-    </mat-form-field>
-  </div>
 
-  <div class="example-container">
-    <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-      <mat-label>Enter some input</mat-label>
-      <input matInput #input maxlength="10" placeholder="Ex. Nougat">
-      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Select me</mat-label>
-      <mat-select>
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-    </mat-form-field>
-  </div> -->
   <div class="example-button-row" >
-    <button type="submit" (click)="update()" mat-raised-button mat-button color="primary" [disabled]="form.invalid">Editar</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" style="margin-left: 8px;" type="submit" (click)="update()" mat-raised-button mat-button color="primary" [disabled]="form.invalid">Editar</button>
+    <mat-slide-toggle class="slide-inactive">Personal Inactivo</mat-slide-toggle>
 </div>
+
 </form>
-
-
-
-
-
-
-
-

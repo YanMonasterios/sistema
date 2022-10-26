@@ -1,0 +1,100 @@
+from calendar import month
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.parsers import JSONParser, MultiPartParser
+from datetime import date, datetime, timedelta
+from apps.benefits.api.serializers import BenefitsSerializer, BenefitsRetrieveSerializer
+from apps.benefits.models import Benefits
+from apps.fijos.models import Fijos
+from dateutil.relativedelta import relativedelta
+import datetime 
+
+
+class BenefitsViewSet(viewsets.ModelViewSet):
+    serializer_class = BenefitsSerializer
+    parser_classes = (JSONParser, MultiPartParser, )
+
+    def get_queryset(self, pk=None):
+        if pk is None:
+            return self.get_serializer().Meta.model.objects.filter(state=True)
+        return self.get_serializer().Meta.model.objects.filter(id=pk, state=True).first()
+    
+    def retrieve(self, request, pk=None):
+        print(pk)
+        benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk), many=True)   
+
+        data = {
+            "total": self.get_queryset().count(),
+            "totalNotFiltered": self.get_queryset().count(),
+            "rows": benefits_serializer.data
+        } 
+        return Response(data, status=status.HTTP_200_OK)
+    
+    def update(self, request, pk=None):
+        benefits_serializer = self.get_serializer(Benefits.objects.filter(id=pk), many=True)
+        anticipo = request.data['anticipo']
+        b2 = Benefits.objects.filter(id=pk)  
+        b2.anticipo = anticipo  
+        b2.save()
+        
+        data = {
+            "total": self.get_queryset().count(),
+            "totalNotFiltered": self.get_queryset().count(),
+            "rows": benefits_serializer.data
+        } 
+        return Response(data, status=status.HTTP_200_OK)
+    
+    def create(self, request, pk=None):
+        benefits_serializer = self.get_serializer(Benefits.objects.all(), many=True)
+        fijos = Fijos.objects.all()
+        fecha = request.data['fecha']
+        tasa = int(request.data['tasa'])
+        for val in fijos.iterator():
+            id_fijos = val.id
+            salario_mensual = val.salary
+            fecha_actual = date.today()
+            benefits = Benefits.objects.filter(id_name=id_fijos).last()
+            if benefits:
+                fecha_inicial = benefits.datefin
+            else:
+                fecha_inicial = val.date   
+            meses = (fecha_actual.year - fecha_inicial.year) * 12 + fecha_actual.month - fecha_inicial.month
+            for f in range (meses):
+                un_mes = fecha_inicial + relativedelta(months=+1)
+                un_messtr  = datetime.datetime.strftime(un_mes,'%Y-%m-%d')
+                fecha_inicial = un_mes
+                salario_diario = salario_mensual/30
+                round_salario = round(salario_diario, 2)
+                utilidades_diario = round (salario_diario * ((90/12)/30), 2)
+                bono_vacional_diario = round (salario_diario * 90/12/30, 2)
+                salario_integral = round (salario_diario + utilidades_diario + bono_vacional_diario, 2)
+                dias_prestaciones = 0
+                apartado_mensual = round (salario_integral * dias_prestaciones, 2)
+                # acumulado = round (apartado_mensual - anticipo) 
+                acumulado = 0 
+                intereses= 0
+                intereses_prestaciones = round ((acumulado * tasa) / (360*30), 2)
+                b = Benefits(salario_basico_mensual=salario_mensual,salario_basico_diario=round_salario, utilidades_diario=utilidades_diario,
+                        bono_vacional_diario=bono_vacional_diario,salario_integral_diario=salario_integral,dias_prestaciones=dias_prestaciones,
+                        apartado_mensual=apartado_mensual, anticipo=0, acumulado=acumulado,tasa=tasa,intereses=intereses, 
+                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha, id_name = val, datefin=fecha_inicial )
+                b.save()
+        
+        data = {
+            "total": self.get_queryset().count(),
+            "totalNotFiltered": self.get_queryset().count(),
+            "rows": benefits_serializer.data
+        } 
+        return Response(data, status=status.HTTP_200_OK)
+
+
+    def destroy(self, request, pk=None):
+        benefits = self.get_queryset().filter(id=pk).first() # get instance        
+        if benefits:
+            benefits.state = False
+            benefits.save()
+            return Response({'message':'empleado fijo eliminado correctamente!'}, status=status.HTTP_200_OK)
+        return Response({'error':'No existe un empleado fijo con estos datos!'}, status=status.HTTP_400_BAD_REQUEST)
+        
+
