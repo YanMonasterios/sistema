@@ -10,7 +10,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditComponent } from '../edit/edit.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { prestacionComponent } from '../prestaciones/prestacion.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
 import Swal from 'sweetalert2';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -33,6 +33,7 @@ export class FijoComponent  {
 
 constructor(private service: FijosServices,
             private services: BenefitsServices,
+            private rutas: Router,
             public dialog: MatDialog,
             ) {}
             //public dialog: MatDialog ){}
@@ -63,8 +64,10 @@ cargarData(){
   });
 }
 
-tasa(): void{
+tasa(enviar: any): void{
+  console.log(enviar)
   const dialogRef = this.dialog.open(MesTasaComponent, {
+    data: enviar
   });
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
@@ -72,67 +75,55 @@ tasa(): void{
 
 }
 
-editar(id:any): void{
-  console.log(id)
+editar(empleado:any): void{
+  console.log(empleado)
   const dialogRef = this.dialog.open(EditComponent, {
-   data:{ id: id }
+   data: empleado
   });
-  console.log(id)
+  console.log(empleado)
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
+    this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+      this.rutas.navigate(['/dashboard/fijo'])
+    })
+  
   });
-
 }
 
 eliminar(id:string){
   console.log(id);
+
+  Swal.fire({
+    title: 'estas seguro?',
+    text: "Deseas eliminar el empleado",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, eliminar!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+        this.service.deleteFijos(id).subscribe(result =>{
+          console.log(result)
+        });
+    Swal.fire(
+      'Eliminado!',
+      'El empleado ha sido eliminado exitosamente',
+      'success'
+      )
+      this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+        this.rutas.navigate(['/dashboard/fijo'])
+      })
+    }
+  })
+
 }
-//   Swal.fire({
-//     title: 'estas seguro?',
-//     text: "Deseas eliminar el empleado",
-//     icon: 'warning',
-//     showCancelButton: true,
-//     confirmButtonColor: '#3085d6',
-//     cancelButtonColor: '#d33',
-//     confirmButtonText: 'Si, eliminar!'
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//         this.service.deleteFijos(id)
-//     Swal.fire(
-//       'Eliminado!',
-//       'El empleado ha sido eliminado exitosamente',
-//       'success'
-//       )
-//     }
-//   })
-// }
-
-
 
 prestacion_social(id:number): void{
   console.log(id)
   this.services.setId(id)
    }; 
    
-   
-showModal(){
-  Swal.fire({
-    title: 'Desea eliminar el empleado?',
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: 'Eliminar',
-    denyButtonText: `No eliminar`,
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-      Swal.fire('Eliminado!', '', 'success')
-    } else if (result.isDenied) {
-      Swal.fire('No se ha eliminado el empleado', '', 'info')
-    }
-  })
-
-}
-
  
  }
 

@@ -25,10 +25,13 @@ export class FijosServices {
   return this.http.put<any>(`${this.API_FIJOS}fijos/fijos/${id}/`, data);
    } 
 
-   deleteFijos(data:any,id:number): Observable<any>{
-    return this.http.delete(`${this.API_FIJOS}fijos/fijos/${id}/`, data);
+   deleteFijos(id:string): Observable<any>{
+    return this.http.delete(`${this.API_FIJOS}fijos/fijos/${id}/`);
    }
 
+   public enviarTasa(data:any): Observable<any>{
+    return this.http.post<any>(`${this.API_FIJOS}benefits/benefits/`,data); 
+   }
 
 
 

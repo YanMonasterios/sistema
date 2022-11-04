@@ -2,7 +2,7 @@
   <span>Personal</span>
   <div class="space"></div>
   <button mat-raised-button color="primary" style="margin-right: 20px;" routerLink="/dashboard/crear-usuario">Agregar</button>
-  <button mat-raised-button color="primary" (click)="tasa()">Cargar Tasa</button>
+  <button mat-raised-button color="primary" (click)="tasa()">Cargar Tasa</button> 
 </mat-toolbar>
 
 <mat-tab-group mat-align-tabs="start">
@@ -26,7 +26,7 @@
         
           <!-- Name Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Nombre</strong> </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
         
@@ -65,7 +65,7 @@
             <th mat-header-cell *matHeaderCellDef> Eliminar </th>
             <td mat-cell *matCellDef="let element">
               <a class="pointer" style="color:#e15639"  matTooltip="Eliminar">
-              <mat-icon (click)="eliminar(element.id)" (click)="showModal()">delete</mat-icon>
+              <mat-icon (click)="eliminar(element.id)">delete</mat-icon>
               </a>
             </td>
           </ng-container>

@@ -8,10 +8,14 @@
     <!-- <button mat-raised-button style="margin-right: 20px;" (click)="exporter.exportTable('csv')"><img style="width: 38px; height: 38px" src="./assets/img/excel.png"></button> -->
 <!-- 
     <button mat-raised-button (click)="anticipo()">Anticipo</button> -->
-    <div class="buttons">
-      <form [formGroup]="form">
-        <input matInput input type="text" matInput autocomplete="off" formControlName = "name">
-      </form>
+    <div class="user">
+      {{datos?.name}}
+      {{datos?.last_name}}
+      <span>| Fecha de ingreso: </span>{{datos?.date}}
+      
+    </div>
+    <div class="options">
+      
       <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
         <!-- <mat-button-toggle value="bold" (click)="meses()">Agregar Mes</mat-button-toggle> -->
         <mat-button-toggle value="italic" (click)="vacaciones()">Vacaciones</mat-button-toggle>
@@ -109,7 +113,7 @@
     </div> 
     <div class="buttons">
       <button mat-raised-button style="margin-right: 20px;" color="warn" routerLink="/dashboard/fijo">Volver</button>
-      <button mat-raised-button color="primary" routerLink="/dashboard/recibo">Finiquito</button>
+      <button mat-raised-button color="primary" routerLink="/dashboard/recibo" target="_blank">Finiquito</button>
     
     </div>
   

@@ -18,7 +18,7 @@ class FijosSerializer(serializers.ModelSerializer):
             'salary': instance.salary,
             'last_name': instance.last_name,
             'id_department': instance.id_department,
-            'num': instance.num,
+            # 'num': instance.num,
             'date': instance.date,
             'salary': instance.salary,
 

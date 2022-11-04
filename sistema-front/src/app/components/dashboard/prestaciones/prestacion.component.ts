@@ -29,10 +29,10 @@ import { ReciboComponent } from '../recibo/recibo.component';
 export class prestacionComponent  {
   opened = false;
   showFiller = false;
-  pruebafijo: any[] = [];
+  pruebafijo: any = [];
   id: number = 0;
-  datos: any[] = [];
-  benefits: any[] = [];
+  datos: any ;
+  benefits: any= [];
   dataSource = new MatTableDataSource(this.benefits);
   displayedColumns: string[] = [ 'datefin','salario_basico_mensual', 'salario_basico_diario', 'utilidades_diario','bono_vacional_diario',
                                  'salario_integral_diario','dias_prestaciones','apartado_mensual','anticipo','acumulado','tasa',
@@ -43,8 +43,8 @@ export class prestacionComponent  {
 @ViewChild(MatPaginator) paginator!: MatPaginator;  
 @ViewChild(MatSort) sort!: MatSort;
 
-constructor(private service: FijosServices,
-            private services: BenefitsServices,
+constructor(private fijos: FijosServices,
+            private beneficios: BenefitsServices,
             public dialog: MatDialog,
             private activerouter: ActivatedRoute,
             private router: Router,
@@ -60,13 +60,13 @@ constructor(private service: FijosServices,
                       })
 
 ngOnInit(): void {
-//  let id = this.data.id
+// let empleado = this.data.id
  this.cargarGet(); 
  this.cargarData();
  this.getDatos();
 //  this.prueba();
 
-this.form.controls['name'].setValue(id.name);
+// this.form.controls['name'].setValue(id.name);
 
 }
 
@@ -76,13 +76,13 @@ this.form.controls['name'].setValue(id.name);
   }
 
   cargarGet(): void{
-    this.id = this.services.getId()
+    this.id = this.beneficios.getId()
     console.log(this.id)
     
   }
 
   cargarData(){
-    this.services.getAllBenefits(this.id).subscribe(result => {
+    this.beneficios.getAllBenefits(this.id).subscribe(result => {
       this.benefits = result.rows; //rows viene de la consola 
       console.log(this.benefits);
       this.dataSource.data = [];
@@ -111,25 +111,15 @@ this.form.controls['name'].setValue(id.name);
 
 
   getDatos() {
-    this.service.getAllFijos().subscribe((res: any) => {
-      console.log(res.rows[0].id);       
-      this.datos = res.find((res: any) => res.rows[0] .id === this.id); 
+    this.fijos.getAllFijos().subscribe((res: any) => {
+      console.log(res.rows);       
+      console.log(res)
+      console.log(typeof(res.rows))
+      this.datos = res.rows.find((filas: any) => filas.id === this.id); 
       console.log(this.datos);
     })
 
   }
-
-  // prueba() {
-  //   this.service.getAllFijos().subscribe(result => {
-  //     this.pruebafijo = result.rows;
-  //     console.log(this.pruebafijo);
-  //     this.dataSource1.data = [];
-  //     this.dataSource1.data = this.pruebafijo;
-  //     console.log(this.pruebafijo)
-  //   });
-  // }
-
-
 
   funcion(){
     this.showModal();

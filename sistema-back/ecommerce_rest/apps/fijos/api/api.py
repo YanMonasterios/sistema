@@ -88,6 +88,7 @@ class FijosViewSet(viewsets.ModelViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=pk, state=True).first()
 
     def list(self, request):
+        # rquest .filterr status true 
         fijos_serializer = self.get_serializer(self.get_queryset(), many=True)
         data = {
             "total": self.get_queryset().count(),

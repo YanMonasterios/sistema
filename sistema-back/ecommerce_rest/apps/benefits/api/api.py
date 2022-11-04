@@ -22,7 +22,7 @@ class BenefitsViewSet(viewsets.ModelViewSet):
     
     def retrieve(self, request, pk=None):
         print(pk)
-        benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk), many=True)   
+        benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk).order_by('datefin'), many=True)   
 
         data = {
             "total": self.get_queryset().count(),
@@ -32,11 +32,18 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         return Response(data, status=status.HTTP_200_OK)
     
     def update(self, request, pk=None):
+        print('paso anticipo')
         benefits_serializer = self.get_serializer(Benefits.objects.filter(id=pk), many=True)
         anticipo = request.data['anticipo']
-        b2 = Benefits.objects.filter(id=pk)  
-        b2.anticipo = anticipo  
-        b2.save()
+        Benefits.objects.filter(id=pk).update(anticipo=anticipo) 
+        b = Benefits.objects.filter(id=pk)
+        acumulado = round (int(b[0].acumulado) - anticipo, 2) 
+        Benefits.objects.filter(id=pk).update(acumulado=acumulado) 
+        # b2[0].anticipo = anticipo
+        # print(b2[0].anticipo) 
+        # print(anticipo)
+        # b2[0].save()
+       
         
         data = {
             "total": self.get_queryset().count(),
@@ -48,12 +55,13 @@ class BenefitsViewSet(viewsets.ModelViewSet):
     def create(self, request, pk=None):
         benefits_serializer = self.get_serializer(Benefits.objects.all(), many=True)
         fijos = Fijos.objects.all()
-        fecha = request.data['fecha']
+        # fecha = request.data['fecha']
         tasa = int(request.data['tasa'])
         for val in fijos.iterator():
             id_fijos = val.id
             salario_mensual = val.salary
             fecha_actual = date.today()
+            fecha_actualstr  = datetime.datetime.strftime(fecha_actual,'%Y-%m-%d')
             benefits = Benefits.objects.filter(id_name=id_fijos).last()
             if benefits:
                 fecha_inicial = benefits.datefin
@@ -69,16 +77,15 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 utilidades_diario = round (salario_diario * ((90/12)/30), 2)
                 bono_vacional_diario = round (salario_diario * 90/12/30, 2)
                 salario_integral = round (salario_diario + utilidades_diario + bono_vacional_diario, 2)
-                dias_prestaciones = 0
+                dias_prestaciones = 5
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
-                # acumulado = round (apartado_mensual - anticipo) 
-                acumulado = 0 
+                acumulado = round (apartado_mensual - 0) 
                 intereses= 0
                 intereses_prestaciones = round ((acumulado * tasa) / (360*30), 2)
                 b = Benefits(salario_basico_mensual=salario_mensual,salario_basico_diario=round_salario, utilidades_diario=utilidades_diario,
                         bono_vacional_diario=bono_vacional_diario,salario_integral_diario=salario_integral,dias_prestaciones=dias_prestaciones,
                         apartado_mensual=apartado_mensual, anticipo=0, acumulado=acumulado,tasa=tasa,intereses=intereses, 
-                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha, id_name = val, datefin=fecha_inicial )
+                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha_actualstr, id_name = val, datefin=fecha_inicial )
                 b.save()
         
         data = {

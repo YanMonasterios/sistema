@@ -1,5 +1,5 @@
 import { FijosServices } from 'src/app/services/fijo.service';
-import { Data } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -18,12 +18,13 @@ export class CrearUsuarioComponent implements OnInit {
   current_timestamp: string = '';
   title = 'sweetAlert';
 
-  constructor(private service: FijosServices) { }
+  constructor(private service: FijosServices, private rutas: Router,) { }
 
     form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
       id_department: new FormControl('', [Validators.required]),
+      CI: new FormControl('', [Validators.required]),
       salary: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required]),
       created_at: new FormControl(`${this.current_timestamp}`),
@@ -47,6 +48,9 @@ export class CrearUsuarioComponent implements OnInit {
     console.log(data);
     this.service.createFijos(data).subscribe(data => {
       console.log(data);
+      this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+        this.rutas.navigate(['/dashboard/fijo'])
+      })
     })
   }
 
