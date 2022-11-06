@@ -67,7 +67,7 @@ cargarData(){
 tasa(enviar: any): void{
   console.log(enviar)
   const dialogRef = this.dialog.open(MesTasaComponent, {
-    data: enviar
+     data: enviar
   });
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
