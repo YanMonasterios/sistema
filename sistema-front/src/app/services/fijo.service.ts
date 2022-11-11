@@ -9,13 +9,20 @@ import { ResponseI } from "../modelos/response.interface";
 
 export class FijosServices {
 
+
    private API_FIJOS = "http://localhost:8000/";
 
    constructor(private http: HttpClient) {}
 
+   
    public getAllFijos(): Observable<any>{
     return this.http.get(`${this.API_FIJOS}fijos/fijos/`);
    }
+   //    return this.http.get(`${this.API_FIJOS}fijos/fijos/`, {
+//     params : {tipo: '0'}
+//   });
+//  }
+
    
    createFijos(data:any): Observable<any>{
     return this.http.post<any>(`${this.API_FIJOS}fijos/fijos/`,data); 
@@ -38,3 +45,16 @@ export class FijosServices {
   
   
 }
+
+
+    // const tipo: any = {
+    //   tipo1 : 0,
+    //   tipo2 : 1
+       
+    //  }
+
+
+//    return this.http.get(`${this.API_FIJOS}fijos/fijos/`, {
+//     params : {tipo: '0'}
+//   });
+//  }

@@ -1,12 +1,15 @@
 <h1 mat-dialog-title>Agregar Tasa</h1>
 <!-- <form [formGroup]="form"> -->
+  <form [formGroup]="form" (submit)="createTasa()">
   <div class="example-container"> 
     <mat-form-field appearance="fill">
      <mat-label>Tasa %</mat-label>
-        <input matInput input type="number" matInput autocomplete="off" formControlName = "CI">
+        <input matInput input type="number" matInput autocomplete="off" formControlName = "tasa">
     </mat-form-field>
 </div>
   <div class="example-button-row" >
     <button mat-raised-button style="margin-right: 20px;" color="warn" mat-dialog-close>Cerrar</button>
-    <button mat-raised-button color="blue" mat-dialog-close>Procesar</button>
+    <button mat-raised-button type="submit" color="blue" mat-dialog-close>Procesar</button>
+    
 </div>
+</form>

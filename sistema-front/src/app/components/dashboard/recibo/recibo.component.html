@@ -1,95 +1,132 @@
-<!-- <mat-toolbar>
-    <span>Recibo</span>
-    <div class="space"></div>
-  </mat-toolbar> -->
-    <h1>Proceso - Mensual</h1>
-<div class="container">
-    <div class="container2">
-        <table>
-            <tr >
-                <td class="per"><b>Periodo:</b> N22</td>
-                <td class="per"><b>Quincena:</b> Q2</td>
-                <td class="per"><b>Fecha inicio:</b> 10/11/2018</td>
-                <td class="per"><b>Fecha fin:</b> 10/11/2020 </td>
-            </tr>
-    
-            <tr>
-                <td class="per">Nombre: Juan Perez</td>
-                <td class="per">Cédula de identidad: 20.375.265</td>
-                <td class="per">Fecha de egreso: 6/01/2015</td>
-            </tr>
-    
-            <tr>
-                <td class="per">Mes: Noviembre </td>
-                <td class="per">Cant. Lunes</td>
-                <td class="per">Dias a pagar: $$</td>
-            </tr>
-    
-        </table>
-    </div>
-    <div class="container" style="border-radius: 7px; width: 90%;">
-        <div class="row">
-            <div class="cajon1">
-                <h4>CONCEPTO</h4>
-                <hr>
-                <table>
-                    <tr style="margin-bottom: 20px;">Intereses sobre Prestaciones según Articulo Nº 142 de LOTTT   (Ver Tabla Prestaciones)</tr><hr>
-                    <tr>VACACIONES FRACCIONADAS</tr><hr>
-                    <tr>BONO VAC. FRACCIONADAS</tr><hr>
-                    <tr>UTILIDADES 2022</tr><hr>
-                    <tr>Bonificación Especila</tr><hr>
-                    <tr><b>TOTAL</b></tr><hr>
-                    <tr><b>DEDUCIBLES</b></tr><hr>
-                    <tr></tr>
-                </table>
-            </div>
-            <div class="cajon2">
-                <h4>Días</h4>
-                <hr>
-                <table>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                </table>
-            </div>
-            <div class="cajon3">
-                <h4>Sueldo Diario</h4>
-                <hr>
-                <table>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                </table>
-            </div>
-            <div class="cajon4">
-                <h4>Total Bs.</h4>
-                <hr>
-                <table>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                </table>
-            </div>
-        </div>
-    </div>
+  <!--<div #canvas>
+    <table>
+      <h4>prpbandp eñ div</h4>
+    </table>
+   </div>-->
 
-    <div>
-        Total a pagar
-    </div>
-    
-</div>
+   <div #canvas>
+    <img class="logo" src="assets/img/Logo.png" >
+    <h3>RIF: J-50042271-7</h3>
+    <h2>RECIBO</h2>
+      <table>
+      <tr>
+        <th colspan="2">Nombre de trabajador</th>
+        <th>Cédula de identidad</th>
+        <th>Cargo</th>
+      </tr>
+      <tr>
+        <td colspan="2">Traer Nombre del trabajador</td>
+        <td>Traer cédula de identidad</td>
+        <td>Traer último cargo</td>
+      </tr>
+
+      <tr>
+        <th>Motivo de egreso</th>
+        <th>Fecha de ingreso</th>
+        <th>Fecha de egreso</th>
+        <th>Tiempo de servicio</th>
+      </tr>
+      <tr>
+        <td>Traer motivo de egreso</td>
+        <td>Traer fecha de ingreso</td>
+        <td>Traer fecha de egreso</td>
+        <td>Traer tiempo de servicio</td>
+      </tr>
+
+      <tr>
+        <th>Último sueldo devengado</th>
+        <th>Sueldo básico diario</th>
+        <th>Último sueldo prom. Mensual</th>
+        <th>Sueldo promedio diario</th>
+      </tr>
+      <tr>
+        <td>Traer último sueldo</td>
+        <td>Traer SBD</td>
+        <td>Traer USPM</td>
+        <td>Traer SPD</td>
+      </tr>
+    </table>
+<br>
+<table>
+  <th colspan="4">CUADRO DEMOSTRATIVO</th>
+  <tr>
+    <td colspan="4">Asignaciones</td>
+  </tr>
+  <tr>
+    <th>Concepto</th>
+    <th>Días</th>
+    <th>Sueldo diario</th>
+    <th>Total Bs.</th>
+  </tr>
+  <tr>
+    <td>Antigüedad Art. 142 Lit. "C" </td>
+    <td>Traer cantidad de días</td>
+    <td>Traer sueldo diario</td>
+    <td>Traer total Bs. sueldo diario</td>
+  </tr>
+  <tr>
+    <td>Intereses sobre prestaciones Art. 142 de LOTTT </td>
+    <td>Traer cantidad de dias intereses prestaciones</td>
+    <td>Traer sueldo diario de int. sobre prestaciones</td>
+    <td>Traet total Bs. sueldo diario de int. sobre prestaciones</td>
+  </tr>
+  <tr>
+    <td>Vacaciones fraccionadas</td>
+    <td>Traer cantidad de días vacaciones fraccionadas</td>
+    <td>Traer sueldo diario de dias vacaciones fraccionadas</td>
+    <td>Traer total Bs. vacaciones fraccionadas</td>
+  </tr>
+  <tr>
+    <td>Bono vacacional fraccionado</td>
+    <td>Traer cantidad de dias del bono vacacional</td>
+    <td>Traer total del sueldo diario de dias del bono vacacional</td>
+  </tr>
+  <tr>
+    <td>Utilidades año (traer año vigente)</td>
+    <td>Traer dias de utilidades</td>
+    <td>Traer utilidades diarias</td>
+    <td>Traer total de las utilidades</td>
+  </tr>
+  <tr>
+    <td colspan="3">Total</td>
+    <td>Traer sumatoria de los campos anteriores</td>
+  </tr>
+  <br>
+  <tr>
+    <td colspan="4">Deducibles</td>
+  </tr>
+  <tr>
+    <td colspan="3">Anticipo</td>
+    <td>Total anticipo otorgado</td>
+  </tr>
+  <tr>
+    <td colspan="3">Intereses pagados</td>
+    <td>Total intereses pagados</td>
+  </tr>
+  <tr>
+    <td colspan="3">INCES 0,5%</td>
+    <td>Total INCES</td>
+  </tr>
+  <tr>
+    <td colspan="3">Total Deducciones</td>
+    <td>Traer sumatoria de los campos anteriores</td>
+  </tr>
+  <br>
+<tr>
+  <td colspan="3">Total asignaciones</td>
+  <td>Monto total asignaciones - deducciones</td>
+</tr>
+<tr>
+  <td colspan="3">TOTAL A PAGAR</td>
+  <td>Monto total a pagar</td>
+</tr>
+</table>
 
 
-
-
-  <!-- <div class="buttons">
+<br>
+  </div>
+  <div>
+    <!--<button mat-raised-button color="primary" (click)="imprimirpdf()">Imprimir PDF</button>-->
     <button mat-raised-button style="margin-right: 20px;" color="warn" routerLink="/dashboard/fijo">Volver</button>
-    <button mat-raised-button color="primary" routerLink="/dashboard/recibo">Procesar</button>
-  
-  </div> -->
+    <button mat-raised-button color="primary" (click)="downloadImage()">Imprimir PDF</button>
+  </div>

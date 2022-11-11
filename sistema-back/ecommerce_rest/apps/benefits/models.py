@@ -16,7 +16,7 @@ class Benefits(BaseModel):
     bono_vacional_diario = models.CharField('bono vacacional diario', max_length=150, unique= False, blank = False, null = False)
     salario_integral_diario = models.CharField('salario integral diario', max_length=150, unique= False, blank = False, null = False)
     dias_prestaciones = models.CharField('dias de prestaciones', max_length=150, unique= False, blank = False, null = False)
-    apartado_mensual = models.CharField('apartado mensual bs', max_length=150, unique= False, blank = False, null = False)
+    apartado_mensual = models.IntegerField('apartado mensual bs', max_length=150, unique= False, blank = False, null = False)
     anticipo = models.CharField('anticipo', max_length=150, unique= False, blank = False, null = False)
     acumulado = models.CharField('acumulado', max_length=150, unique= False, blank = False, null = False)
     tasa = models.CharField('tasa %', max_length=150, unique= False, blank = False, null = False)

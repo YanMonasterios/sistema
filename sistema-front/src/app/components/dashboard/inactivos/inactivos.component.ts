@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export class InactivosComponent implements OnInit {
   fijo: any[] = [];
   dataSource = new MatTableDataSource(this.fijo);
-  displayedColumns: string[] = [ 'id','name', 'last_name', 'CI','id_department','num','date','eliminar', 'editar'];
+  displayedColumns: string[] = [ 'id','name', 'last_name', 'CI','id_department','date','eliminar', 'editar'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;  
   @ViewChild(MatSort) sort!: MatSort;

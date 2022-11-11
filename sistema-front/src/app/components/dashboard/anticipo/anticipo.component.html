@@ -1,23 +1,15 @@
-<h1 mat-dialog-title>Agregar Anticipo</h1>
+<h1 mat-dialog-title>Agregar Amticipo</h1>
 <!-- <form [formGroup]="form"> -->
-  <div class="example-container"> 
-    <mat-form-field class="margen" appearance="fill">    
-     <mat-label>Fecha</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "name">
-    </mat-form-field>
-    <!-- <mat-form-field appearance="fill">
-     <mat-label>Apellido</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "last_name"> 
-    </mat-form-field> -->
-  </div>
+  <form [formGroup]="form" (submit)="updateAntcipo()">
   <div class="example-container"> 
     <mat-form-field appearance="fill">
-     <mat-label>Anticipo Bs</mat-label>
-        <input matInput input type="number" matInput autocomplete="off" formControlName = "CI">
+     <mat-label>Tasa %</mat-label>
+        <input matInput input type="number" matInput autocomplete="off" formControlName = "anticipo">
     </mat-form-field>
 </div>
   <div class="example-button-row" >
     <button mat-raised-button style="margin-right: 20px;" color="warn" mat-dialog-close>Cerrar</button>
-    <button mat-raised-button color="blue" mat-dialog-close>Procesar</button>
+    <button mat-raised-button type="submit" color="blue" mat-dialog-close>Procesar</button>
+    
 </div>
-<!-- </form> -->
+</form>

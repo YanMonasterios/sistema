@@ -47,7 +47,7 @@ constructor(private fijos: FijosServices,
             private beneficios: BenefitsServices,
             public dialog: MatDialog,
             private activerouter: ActivatedRoute,
-            private router: Router,
+            private rutas: Router
             // public data: Data,
 
          //   public data: Data
@@ -90,13 +90,25 @@ ngOnInit(): void {
     });
    }
 
-   anticipo(): void{
+  //  anticipo(): void{
+  //   const dialogRef = this.dialog.open(AnticipoComponent, {
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //   });
+  
+  // }
+
+  anticipo(): void{
     const dialogRef = this.dialog.open(AnticipoComponent, {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+        this.rutas.navigate(['/dashboard/fijo'])
+      })
+    
     });
-  
   }
 
   vacaciones(): void{

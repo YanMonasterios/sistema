@@ -9,6 +9,7 @@ from apps.benefits.models import Benefits
 from apps.fijos.models import Fijos
 from dateutil.relativedelta import relativedelta
 import datetime 
+from django.db.models import Sum
 
 
 class BenefitsViewSet(viewsets.ModelViewSet):
@@ -21,8 +22,12 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=pk, state=True).first()
     
     def retrieve(self, request, pk=None):
+        print('paso retrieve')
         print(pk)
-        benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk).order_by('datefin'), many=True)   
+        benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk).order_by('datefin'), many=True)  
+        # Benefits.objects.filter(id_name=pk)   
+        # b = Benefits.objects.aggregate(Sum('apartado_mensual')) 
+        # print(b, 'suma total') 
 
         data = {
             "total": self.get_queryset().count(),
@@ -87,7 +92,9 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                         apartado_mensual=apartado_mensual, anticipo=0, acumulado=acumulado,tasa=tasa,intereses=intereses, 
                         intereses_prestaciones=intereses_prestaciones,date_tasa=fecha_actualstr, id_name = val, datefin=fecha_inicial )
                 b.save()
-        
+
+            
+            
         data = {
             "total": self.get_queryset().count(),
             "totalNotFiltered": self.get_queryset().count(),

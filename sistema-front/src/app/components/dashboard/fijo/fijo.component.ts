@@ -9,6 +9,7 @@ import { BenefitsServices  } from 'src/app/services/prestaciones.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditComponent } from '../edit/edit.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { prestacionComponent } from '../prestaciones/prestacion.component';
 import { Router, RouterLink } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -26,7 +27,7 @@ export class FijoComponent  {
 
   fijo: any[] = [];
   dataSource = new MatTableDataSource(this.fijo);
-  displayedColumns: string[] = [ 'id','name', 'last_name', 'CI','id_department','salary','date','eliminar', 'editar', 'prestacion social'];
+  @Input () displayedColumns: string[] = [ 'id','name', 'last_name', 'CI','id_department','salary','date','eliminar', 'editar', 'prestacion social'];
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;  
 @ViewChild(MatSort) sort!: MatSort;
@@ -38,10 +39,15 @@ constructor(private service: FijosServices,
             ) {}
             //public dialog: MatDialog ){}
 
+   personal = new FormGroup({
+      tipo: new FormControl('', [Validators.required]),
+                      })
+
 ngOnInit(): void {
   
-  this.cargarData();
+  // this.cargarData();
  // this.dataSource.paginator = this.paginator;
+    console.log(this.personal.value)
  
 }
 
@@ -55,19 +61,36 @@ applyFilter(event: Event) {
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
-cargarData(){
+cargarData(estatus: number ){
+  console.log(estatus)
+  const Data = this.personal.value
+  Data.tipo = estatus
   this.service.getAllFijos().subscribe(result => {
+    console.log(estatus)
     this.fijo = result.rows;
     console.log(this.fijo);
     this.dataSource.data = [];
     this.dataSource.data = this.fijo;
+
+    
   });
 }
 
-tasa(enviar: any): void{
-  console.log(enviar)
+// cargarData(){
+//   this.service.getAllFijos().subscribe(result => {
+//     this.fijo = result.rows;
+//     console.log(this.fijo);
+//     this.dataSource.data = [];
+//     this.dataSource.data = this.fijo;
+
+    
+//   });
+// }
+
+
+
+tasa(): void{
   const dialogRef = this.dialog.open(MesTasaComponent, {
-     data: enviar
   });
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
@@ -84,6 +107,7 @@ editar(empleado:any): void{
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+      // Swal.fire('Empleado modificado')
       this.rutas.navigate(['/dashboard/fijo'])
     })
   
@@ -95,20 +119,20 @@ eliminar(id:string){
 
   Swal.fire({
     title: 'estas seguro?',
-    text: "Deseas eliminar el empleado",
+    text: "Deseas inactivar el empleado?",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, eliminar!'
+    confirmButtonText: 'Si, Inactivar!'
   }).then((result) => {
     if (result.isConfirmed) {
         this.service.deleteFijos(id).subscribe(result =>{
           console.log(result)
         });
     Swal.fire(
-      'Eliminado!',
-      'El empleado ha sido eliminado exitosamente',
+      'inactivado!',
+      'El empleado ha sido inactivado exitosamente',
       'success'
       )
       this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {

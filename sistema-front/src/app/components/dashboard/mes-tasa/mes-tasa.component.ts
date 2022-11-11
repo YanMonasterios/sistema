@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Data, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FijosServices } from 'src/app/services/fijo.service';
 
@@ -29,6 +30,13 @@ export class MesTasaComponent implements OnInit {
       console.log(data);
       this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
         this.rutas.navigate(['/dashboard/fijo'])
+      })
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Tasa agregada con Exito',
+        showConfirmButton: false,
+        timer: 1500
       })
     })
   }

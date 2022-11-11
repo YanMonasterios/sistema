@@ -1,4 +1,4 @@
-*{
+/* *{
     padding: 0;
     margin: 0;
 }
@@ -14,8 +14,8 @@ body{
     width:80%;
     border: solid 2px rgb(29, 29, 29);
     /*border-radius: 7px;*/
-}
-
+/* } */
+/* 
 h1, h4{
     text-align:center;
 }
@@ -37,7 +37,7 @@ h1, h4{
 .cajon1{
     border-right: solid 1px rgb(29, 29, 29);
     /*width: 50%;*/
-    }
+    /* }
 
 .cajon1,
 .cajon2,
@@ -61,4 +61,46 @@ h1, h4{
 .cajon4{
     border-left: solid 1px rgb(29, 29, 29);
     width: 16%;
-    }
+    }   */
+
+    .logolc{
+        display:block;
+        margin:left;
+        background-position: left;
+        height: 150px;
+        width: 150px;
+        margin-left: 1em;
+      }
+      
+      table{
+      
+        /*border-collapse: collapse;*/
+        border: solid thin #838383;
+        border-radius: 10px;
+      }
+      
+      td, th{
+        border: solid thin #838383;
+      }
+      
+      td th:first-of-type{
+        border-top-left-radius: 10px;
+      }
+      
+      tr th:last-of-type{
+        border-top-right-radius: 10px;
+      }
+      
+      tr:last-of-type td:first-of-type{
+        border-bottom-left-radius: 10px;
+      }
+      
+      tr:last-of-type td:last-of-type{
+        border-bottom-right-radius: 10px;
+      }
+
+.logo{
+  height:1em ;
+  top: 2em;
+  left: 1em;
+}

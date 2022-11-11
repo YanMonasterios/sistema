@@ -31,7 +31,7 @@ class FijosViewSet(viewsets.ModelViewSet):
             print('trajo los activos')
         else:
             fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
-            print('trajo los inacctivos')
+            print('trajo los inactivos')
         data = {
             "total": self.get_queryset().count(),
             "totalNotFiltered": self.get_queryset().count(),

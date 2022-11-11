@@ -29,6 +29,7 @@
     "angular-paginator": "^8.0.0",
     "find": "^0.3.0",
     "font-awesome": "^4.7.0",
+    "jspdf": "^2.5.1",
     "mat-table-exporter": "^10.2.4",
     "moment": "^2.29.4",
     "ngx-toastr": "^11.3.3",
