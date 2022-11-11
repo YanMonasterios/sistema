@@ -7,6 +7,7 @@ import {FijosServices} from '../../../services/fijo.service';
 import { EditComponent } from '../edit/edit.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -26,9 +27,14 @@ export class InactivosComponent implements OnInit {
               public dialog: MatDialog,
               ) { }
 
+
+  // personal = new FormGroup({
+  //   tipo: new FormControl('', [Validators.required]),
+  //            })
+
   ngOnInit(): void {
 
-    this.cargarData();
+     this.cargarData();
     
   }
 
@@ -46,11 +52,26 @@ export class InactivosComponent implements OnInit {
   cargarData(){
     this.service.getAllFijos().subscribe(result => {
       this.fijo = result.rows;
-      console.log(this.fijo);
+      // console.log(this.fijo);
       this.dataSource.data = [];
       this.dataSource.data = this.fijo;
     });
   }
+
+  // cargarData(estatus: number ){
+  //   console.log(estatus)
+  //   const Data = this.personal.value
+  //   Data.tipo = estatus
+  //   this.service.getAllFijos(Data).subscribe(result => {
+  //     console.log(estatus)
+  //     this.fijo = result.rows;
+  //     console.log(this.fijo);
+  //     this.dataSource.data = [];
+  //     this.dataSource.data = this.fijo;
+  
+      
+  //   });
+  // }
 
   editar(id:string): void{
     const dialogRef = this.dialog.open(EditComponent, {

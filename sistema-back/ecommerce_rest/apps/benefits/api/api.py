@@ -25,16 +25,18 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         print('paso retrieve')
         print(pk)
         benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk).order_by('datefin'), many=True)  
-        # Benefits.objects.filter(id_name=pk)   
         # b = Benefits.objects.aggregate(Sum('apartado_mensual')) 
-        # print(b, 'suma total') 
+        suma_apartado = Benefits.objects.filter(id_name=pk).aggregate(Sum('apartado_mensual')) 
+
+        print(suma_apartado, 'suma total') 
 
         data = {
             "total": self.get_queryset().count(),
             "totalNotFiltered": self.get_queryset().count(),
-            "rows": benefits_serializer.data
+            "rows": benefits_serializer.data,
+            "apartado": suma_apartado
         } 
-        return Response(data, status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK )
     
     def update(self, request, pk=None):
         print('paso anticipo')

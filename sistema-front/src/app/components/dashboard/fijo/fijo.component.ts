@@ -39,15 +39,15 @@ constructor(private service: FijosServices,
             ) {}
             //public dialog: MatDialog ){}
 
-   personal = new FormGroup({
-      tipo: new FormControl('', [Validators.required]),
-                      })
+  //  personal = new FormGroup({
+  //     tipo: new FormControl('', [Validators.required]),
+  //                     })
 
 ngOnInit(): void {
   
-  // this.cargarData();
+   this.cargarData();
  // this.dataSource.paginator = this.paginator;
-    console.log(this.personal.value)
+ //   console.log(this.personal.value)
  
 }
 
@@ -61,33 +61,18 @@ applyFilter(event: Event) {
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
-cargarData(estatus: number ){
-  console.log(estatus)
-  const Data = this.personal.value
-  Data.tipo = estatus
+
+
+cargarData(){
   this.service.getAllFijos().subscribe(result => {
-    console.log(estatus)
     this.fijo = result.rows;
-    console.log(this.fijo);
+    // console.log(this.fijo);
     this.dataSource.data = [];
     this.dataSource.data = this.fijo;
 
     
   });
 }
-
-// cargarData(){
-//   this.service.getAllFijos().subscribe(result => {
-//     this.fijo = result.rows;
-//     console.log(this.fijo);
-//     this.dataSource.data = [];
-//     this.dataSource.data = this.fijo;
-
-    
-//   });
-// }
-
-
 
 tasa(): void{
   const dialogRef = this.dialog.open(MesTasaComponent, {
@@ -154,3 +139,19 @@ prestacion_social(id:number): void{
 
 
 
+
+
+ // cargarData(estatus: number ){
+//   console.log(estatus)
+//   const Data = this.personal.value
+//   Data.tipo = estatus
+//   this.service.getAllFijos(Data).subscribe(result => {
+//     console.log(estatus)
+//     this.fijo = result.rows;
+//     console.log(this.fijo);
+//     this.dataSource.data = [];
+//     this.dataSource.data = this.fijo;
+
+    
+//   });
+// }

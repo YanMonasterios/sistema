@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser, MultiPartParser
 from apps.fijos.models import Fijos
 from apps.fijos.api.serializers import FijosSerializer, FijosRetrieveSerializer
@@ -14,30 +15,60 @@ class FijosViewSet(viewsets.ModelViewSet):
             return self.get_serializer().Meta.model.objects.filter(state=True)
         return self.get_serializer().Meta.model.objects.filter(id=pk, state=True).first()
 
-    # def list(self, request):
-    #     fijos_serializer = self.get_serializer(self.get_queryset(), many=True)
-    #     data = {
-    #         "total": self.get_queryset().count(),
-    #         "totalNotFiltered": self.get_queryset().count(),
-    #         "rows": fijos_serializer.data
-    #     }
-    #     return Response(data, status=status.HTTP_200_OK)
-    
     def list(self, request):
-        print('paso list')
-        tipo_fijo = request.data['tipo']
-        if tipo_fijo == int(0):
-            fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
-            print('trajo los activos')
-        else:
-            fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
-            print('trajo los inactivos')
+        # fijos_serializer = self.get_serializer(self.get_queryset(), many=True)
+        fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
+        print('trajo los activos')
         data = {
             "total": self.get_queryset().count(),
             "totalNotFiltered": self.get_queryset().count(),
             "rows": fijos_serializer.data
         }
         return Response(data, status=status.HTTP_200_OK)
+    
+    # @action(detail=False, methods=['get'])
+    # def activos(self, request):
+    #     fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
+    #     print('trajo los activos')
+        
+    #     data = {
+    #         "total": self.get_queryset().count(),
+    #         "totalNotFiltered": self.get_queryset().count(),
+    #         "rows": fijos_serializer.data
+    #     }
+        
+    #     return Response(data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['get'])
+    def inactivos(self, request):
+        fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
+        print('trajo los inactivos')
+        
+        data = {
+            "total": self.get_queryset().count(),
+            "totalNotFiltered": self.get_queryset().count(),
+            "rows": fijos_serializer.data
+        }
+        
+        return Response(data, status=status.HTTP_200_OK)     
+        
+        
+        
+    # def list(self, request):
+    #     print('paso list')
+    #     tipo_fijo = request.data['tipo']
+    #     if tipo_fijo == int(0):
+    #         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
+    #         print('trajo los activos')
+    #     else:
+    #         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
+    #         print('trajo los inactivos')
+    #     data = {
+    #         "total": self.get_queryset().count(),
+    #         "totalNotFiltered": self.get_queryset().count(),
+    #         "rows": fijos_serializer.data
+    #     }
+    #     return Response(data, status=status.HTTP_200_OK)
 
     def create(self, request):
         # send information to serializer 

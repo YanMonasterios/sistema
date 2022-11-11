@@ -14,14 +14,9 @@ export class FijosServices {
 
    constructor(private http: HttpClient) {}
 
-   
    public getAllFijos(): Observable<any>{
-    return this.http.get(`${this.API_FIJOS}fijos/fijos/`);
-   }
-   //    return this.http.get(`${this.API_FIJOS}fijos/fijos/`, {
-//     params : {tipo: '0'}
-//   });
-//  }
+      return this.http.get(`${this.API_FIJOS}fijos/fijos/`);
+     }
 
    
    createFijos(data:any): Observable<any>{
@@ -58,3 +53,16 @@ export class FijosServices {
 //     params : {tipo: '0'}
 //   });
 //  }
+
+
+
+
+   //    return this.http.get(`${this.API_FIJOS}fijos/fijos/`, {
+//     params : {tipo: '0'}
+//   });
+//  }
+
+
+   // public getAllFijos(data:any): Observable<any>{
+   //  return this.http.get(`${this.API_FIJOS}fijos/fijos/`,data);
+   // }
