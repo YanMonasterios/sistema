@@ -1,9 +1,8 @@
 <app-header></app-header>
-<body background="fondo-login.jpg">
-<div class="body">
+<body class="body">
+<div>
     <div class="login">
         <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
-
         <form *ngIf="!loading" [formGroup]="form">
           <mat-form-field class="ancho" appearance="fill">
               <mat-icon aria-hidden="false" aria-label="Example home icon" class="person">person</mat-icon>

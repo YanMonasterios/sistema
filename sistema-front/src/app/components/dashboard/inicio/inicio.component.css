@@ -144,3 +144,11 @@ h1.title{
   height: 24px;
   width: auto;
 }
+
+.fondo{
+  display: block;
+  margin: auto;
+  opacity: 30%; 
+  background-position: center;
+  background-image: url('/assets/img/fondo.png')
+}

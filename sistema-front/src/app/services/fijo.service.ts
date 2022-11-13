@@ -18,6 +18,10 @@ export class FijosServices {
       return this.http.get(`${this.API_FIJOS}fijos/fijos/`);
      }
 
+   public getAllInactivos(): Observable<any>{
+    return this.http.get(`${this.API_FIJOS}fijos/fijos/inactivos/`);
+     }
+
    
    createFijos(data:any): Observable<any>{
     return this.http.post<any>(`${this.API_FIJOS}fijos/fijos/`,data); 

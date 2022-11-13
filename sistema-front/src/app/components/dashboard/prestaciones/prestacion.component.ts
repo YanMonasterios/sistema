@@ -77,14 +77,14 @@ ngOnInit(): void {
 
   cargarGet(): void{
     this.id = this.beneficios.getId()
-    console.log(this.id)
+    // console.log(this.id)
     
   }
 
   cargarData(){
     this.beneficios.getAllBenefits(this.id).subscribe(result => {
       this.benefits = result.rows; //rows viene de la consola 
-      console.log(this.benefits);
+      // console.log(this.benefits);
       this.dataSource.data = [];
       this.dataSource.data = this.benefits;
     });

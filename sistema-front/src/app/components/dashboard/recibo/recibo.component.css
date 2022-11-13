@@ -1,106 +1,73 @@
-/* *{
-    padding: 0;
-    margin: 0;
-}
-
-body{
-    background: rgb(243, 243, 243);
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.container{
-    margin: auto;
-    height:100%;
-    width:80%;
-    border: solid 2px rgb(29, 29, 29);
-    /*border-radius: 7px;*/
-/* } */
-/* 
-h1, h4{
-    text-align:center;
-}
-
-.per {
-    padding: 10px;
-}
-
-.container2{
-    height:100%;
-    width:77%;
-    margin:0px auto;
-}
-
-.row{
-    display: flex;
-}
-
-.cajon1{
-    border-right: solid 1px rgb(29, 29, 29);
-    /*width: 50%;*/
-    /* }
-
-.cajon1,
-.cajon2,
-.cajon3,
-.cajon4, h4{
-    padding: 5px;
-}
-
-
-
-.cajon2{
-    border-left: solid 1px rgb(29, 29, 29);
-    width: 16%;
-    }
-
-.cajon3{
-    border-left: solid 1px rgb(29, 29, 29);
-    width: 16%;
-    }
-
-.cajon4{
-    border-left: solid 1px rgb(29, 29, 29);
-    width: 16%;
-    }   */
-
-    .logolc{
-        display:block;
-        margin:left;
-        background-position: left;
-        height: 150px;
-        width: 150px;
-        margin-left: 1em;
-      }
-      
-      table{
-      
-        /*border-collapse: collapse;*/
-        border: solid thin #838383;
-        border-radius: 10px;
-      }
-      
-      td, th{
-        border: solid thin #838383;
-      }
-      
-      td th:first-of-type{
-        border-top-left-radius: 10px;
-      }
-      
-      tr th:last-of-type{
-        border-top-right-radius: 10px;
-      }
-      
-      tr:last-of-type td:first-of-type{
-        border-bottom-left-radius: 10px;
-      }
-      
-      tr:last-of-type td:last-of-type{
-        border-bottom-right-radius: 10px;
-      }
-
 .logo{
+  /* display:flex;
+  margin:left;
+  height: 200px;
+  width: 200px;
+  margin-left: 1em; */
+  position: absolute;
   height:1em ;
-  top: 2em;
+  top: 5em;
   left: 1em;
 }
+
+table{
+
+  border-collapse: collapse;
+  border: solid thin #838383;
+  border-radius: 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: medium;
+}
+
+td, th{
+  border: solid thin #838383;
+}
+
+td th:first-of-type{
+  border-top-left-radius: 10px;
+}
+
+tr th:last-of-type{
+  border-top-right-radius: 10px;
+}
+
+tr:last-of-type td:first-of-type{
+  border-bottom-left-radius: 10px;
+}
+
+tr:last-of-type td:last-of-type{
+  border-bottom-right-radius: 10px;
+}
+
+.titulo{
+  margin-left: 17em;
+}
+
+.tabla{
+display:flex;
+margin-left: 18em;
+font-size: medium;
+}
+
+.detalle{
+  margin-left: 22em;
+}
+
+.titulo-cuadro{
+  font-size: large;
+}
+
+.final{
+  font-size: large;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin-left: 2em;
+  margin-right: 45em;
+  text-align: justify;
+}
+
+.final-tabla{
+  border: none;
+}
+
+
+

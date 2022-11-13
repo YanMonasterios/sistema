@@ -36,7 +36,7 @@ const routes: Routes = [
     { path: 'Anticipo', component: AnticipoComponent },
     { path: 'vacaciones', component: VacacionesComponent },
     { path: 'inactivos', component: InactivosComponent },
-    { path: 'recibo', component: ReciboComponent },
+    { path: 'recibo/:id', component: ReciboComponent },
 
 
   ]}

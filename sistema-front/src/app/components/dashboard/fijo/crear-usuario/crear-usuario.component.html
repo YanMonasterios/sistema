@@ -1,19 +1,20 @@
-<div class="container">
-<mat-toolbar>
-    <span>Crear Personal</span>    
-  </mat-toolbar>
-
-  <mat-card style="margin-top: 10px;">
-    <form [formGroup]="form">
-        <mat-grid-list cols="4" rowHeight="100px">
-            <mat-grid-tile [colspan]="2" [rowspan]="1"> 
-                <mat-form-field appearance="legacy" class="ancho">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Ingrese un Nombre" autocomplete="off" formControlName = "name">
-                    <mat-hint>Hint</mat-hint>
-                  </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="5"> 
+<div class="fondo">
+    <div class="container">
+        <mat-toolbar>
+            <span>Crear Personal</span>    
+        </mat-toolbar>
+        
+        <mat-card style="margin-top: 10px;">
+            <form [formGroup]="form">
+                <mat-grid-list cols="4" rowHeight="100px">
+                    <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+                        <mat-form-field appearance="legacy" class="ancho">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="Ingrese un Nombre" autocomplete="off" formControlName = "name">
+                            <mat-hint>Hint</mat-hint>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="5"> 
                 <img src="./assets/img/user.png" width="250" height="250">
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
@@ -21,29 +22,29 @@
                     <mat-label>Apellido</mat-label>
                     <input matInput placeholder="Ingrese un Apellido" autocomplete="off" formControlName = "last_name">
                     <mat-hint>Hint</mat-hint>
-                  </mat-form-field>
+                </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <mat-form-field appearance="legacy" class="ancho">
                     <mat-label>Cedula</mat-label>
                     <input matInput placeholder="Ingrese una Cedula" autocomplete="off" input type="number"  formControlName = "CI">
                     <mat-hint>Hint</mat-hint>
-                  </mat-form-field>
+                </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <mat-form-field class="ancho">
                     <mat-label>Departamento</mat-label>
-                    <mat-select formControlName = "id_department">
-                      <mat-option *ngFor="let item of departamento"  [value]="item">{{item}}</mat-option>
+                    <mat-select>
+                        <mat-option *ngFor="let item of departamento"  [value]="item">{{item}}</mat-option>
                     </mat-select>
-                  </mat-form-field>
+                </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <mat-form-field appearance="legacy" class="ancho">
                     <mat-label>Salario del empleado</mat-label>
                     <input matInput placeholder="Ingrese Salario" input type="number" autocomplete="off" formControlName = "salary">
                     <mat-hint>Hint</mat-hint>
-                  </mat-form-field>
+                </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <mat-form-field appearance="legacy" class="ancho">
@@ -60,5 +61,7 @@
     </form>
 </mat-card>
 
+
+</div>
 
 </div>

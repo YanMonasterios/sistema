@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {FijosServices} from '../../../services/fijo.service';
+import { Router, RouterLink } from '@angular/router';
 import { EditComponent } from '../edit/edit.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
@@ -25,12 +26,9 @@ export class InactivosComponent implements OnInit {
 
   constructor(private service: FijosServices,
               public dialog: MatDialog,
+              private rutas: Router,
               ) { }
 
-
-  // personal = new FormGroup({
-  //   tipo: new FormControl('', [Validators.required]),
-  //            })
 
   ngOnInit(): void {
 
@@ -50,9 +48,9 @@ export class InactivosComponent implements OnInit {
   }
 
   cargarData(){
-    this.service.getAllFijos().subscribe(result => {
+    this.service.getAllInactivos().subscribe(result => {
       this.fijo = result.rows;
-      // console.log(this.fijo);
+      console.log(this.fijo);
       this.dataSource.data = [];
       this.dataSource.data = this.fijo;
     });
@@ -73,15 +71,20 @@ export class InactivosComponent implements OnInit {
   //   });
   // }
 
-  editar(id:string): void{
+  editar(empleado:any): void{
+    console.log(empleado)
     const dialogRef = this.dialog.open(EditComponent, {
-     data:{ id: id }
+     data: empleado
     });
-    console.log(id)
+    console.log(empleado)
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+        // Swal.fire('Empleado modificado')
+        this.rutas.navigate(['/dashboard/fijo'])
+      })
+    
     });
-  
   }
   
   eliminar(id:string){

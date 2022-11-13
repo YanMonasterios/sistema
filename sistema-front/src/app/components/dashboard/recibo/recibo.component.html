@@ -7,17 +7,22 @@
    <div #canvas>
     <img class="logo" src="assets/img/Logo.png" >
     <h3>RIF: J-50042271-7</h3>
-    <h2>RECIBO</h2>
+    <h2 class="titulo">CÁLCULO DE PRESTACIONES SOCIALES</h2>
+
+    <pre>
+      {{apartado | currency:'Bs.':'symbol':'.2-2':'es-VE' }}
+    </pre>
+    <div class="tabla">
       <table>
-      <tr>
-        <th colspan="2">Nombre de trabajador</th>
-        <th>Cédula de identidad</th>
+        <tr>
+          <th colspan="2">Nombre de trabajador</th>
+          <th>Cédula de identidad</th>
         <th>Cargo</th>
       </tr>
-      <tr>
-        <td colspan="2">Traer Nombre del trabajador</td>
-        <td>Traer cédula de identidad</td>
-        <td>Traer último cargo</td>
+      <tr style="text-align: center;">
+        <td colspan="2">{{empleado?.name}} {{empleado?.last_name}}</td>
+        <td>{{empleado?.CI | number : '':'es-VE'}}</td>
+        <td>{{empleado?.id_department}}</td>
       </tr>
 
       <tr>
@@ -26,107 +31,150 @@
         <th>Fecha de egreso</th>
         <th>Tiempo de servicio</th>
       </tr>
-      <tr>
-        <td>Traer motivo de egreso</td>
-        <td>Traer fecha de ingreso</td>
-        <td>Traer fecha de egreso</td>
-        <td>Traer tiempo de servicio</td>
+      <tr style="text-align: center;">
+        <mat-select>
+          <mat-option *ngFor="let item of motivo"  [value]="item">{{item}}</mat-option>
+          
+      </mat-select>
+
+        <!-- <td>Renuncia</td> -->
+        <td>01/11/2022</td>
+        <td>15/11/2022</td>
+        <td>0 años, 0 meses, 15 días</td>
       </tr>
 
       <tr>
-        <th>Último sueldo devengado</th>
+        <th>Últ. sueldo devengado</th>
         <th>Sueldo básico diario</th>
-        <th>Último sueldo prom. Mensual</th>
-        <th>Sueldo promedio diario</th>
+        <th>Últ. sueldo prom. Mensual</th>
+        <th>Sueldo prom. diario</th>
       </tr>
-      <tr>
-        <td>Traer último sueldo</td>
-        <td>Traer SBD</td>
-        <td>Traer USPM</td>
-        <td>Traer SPD</td>
+      <tr style="text-align: center;">
+        <td>Bs. 130,00</td>
+        <td >Bs. 4,33</td>
+        <td>Bs. 130,00</td>
+        <td>Bs. 4,33</td>
       </tr>
     </table>
+  </div>
 <br>
-<table>
-  <th colspan="4">CUADRO DEMOSTRATIVO</th>
-  <tr>
-    <td colspan="4">Asignaciones</td>
-  </tr>
-  <tr>
-    <th>Concepto</th>
-    <th>Días</th>
-    <th>Sueldo diario</th>
+<div class="detalle">
+  <table>
+    <th class="titulo-cuadro" colspan="4">CUADRO DEMOSTRATIVO</th>
+    <tr>
+      <td colspan="4" style="font-weight: bold;">Asignaciones</td>
+    </tr>
+    <tr>
+      <th>Concepto</th>
+      <th>Días</th>
+    <th>Sueldo diario Bs.</th>
     <th>Total Bs.</th>
   </tr>
   <tr>
     <td>Antigüedad Art. 142 Lit. "C" </td>
-    <td>Traer cantidad de días</td>
-    <td>Traer sueldo diario</td>
-    <td>Traer total Bs. sueldo diario</td>
+    <td style="text-align: center;">15</td>
+    <td style="text-align: right;">4,33</td>
+    <td style="text-align: right;">130,00</td>
   </tr>
   <tr>
-    <td>Intereses sobre prestaciones Art. 142 de LOTTT </td>
-    <td>Traer cantidad de dias intereses prestaciones</td>
-    <td>Traer sueldo diario de int. sobre prestaciones</td>
-    <td>Traet total Bs. sueldo diario de int. sobre prestaciones</td>
+    <td>Intereses sobre prest. Art. 142 de LOTTT </td>
+    <td style="text-align: center;">0</td>
+    <td style="text-align: right;">{{benefits?.bono_vacional_diario | currency:'Bs.':'symbol':'.2-2':'es-VE'}}</td>
+    <td style="text-align: right;">4,33</td>
   </tr>
   <tr>
     <td>Vacaciones fraccionadas</td>
-    <td>Traer cantidad de días vacaciones fraccionadas</td>
-    <td>Traer sueldo diario de dias vacaciones fraccionadas</td>
-    <td>Traer total Bs. vacaciones fraccionadas</td>
+    <td style="text-align: center;">15</td>
+    <td style="text-align: right;">4,33</td>
+    <td style="text-align: right;">64,35</td>
   </tr>
   <tr>
     <td>Bono vacacional fraccionado</td>
-    <td>Traer cantidad de dias del bono vacacional</td>
-    <td>Traer total del sueldo diario de dias del bono vacacional</td>
+    <td style="text-align: center;">15</td>
+    <td style="text-align: right;">4,33</td>
+    <td style="text-align: right;">64,33</td>
   </tr>
   <tr>
-    <td>Utilidades año (traer año vigente)</td>
-    <td>Traer dias de utilidades</td>
-    <td>Traer utilidades diarias</td>
-    <td>Traer total de las utilidades</td>
+    <td>Utilidades año {{anio}}</td>
+    <td style="text-align: center;">15</td>
+    <td style="text-align: right;">4,33</td>
+    <td style="text-align: right;">64,32</td>
   </tr>
   <tr>
-    <td colspan="3">Total</td>
-    <td>Traer sumatoria de los campos anteriores</td>
+    <td colspan="3" style="font-weight: bold;">Total</td>
+    <td style="text-align: right;">{{apartado | currency:'Bs.':'symbol':'.2-2':'es-VE'}}</td>
   </tr>
   <br>
   <tr>
-    <td colspan="4">Deducibles</td>
+    <td colspan="4" style="font-weight: bold;">Deducibles</td>
   </tr>
   <tr>
     <td colspan="3">Anticipo</td>
-    <td>Total anticipo otorgado</td>
+    <td style="text-align: right;">0,00</td>
   </tr>
   <tr>
     <td colspan="3">Intereses pagados</td>
-    <td>Total intereses pagados</td>
+    <td style="text-align: right;">0,00</td>
   </tr>
   <tr>
     <td colspan="3">INCES 0,5%</td>
-    <td>Total INCES</td>
+    <td style="text-align: right;">12,90</td>
   </tr>
   <tr>
-    <td colspan="3">Total Deducciones</td>
-    <td>Traer sumatoria de los campos anteriores</td>
+    <td colspan="3" style="font-weight: bold;">Total Deducciones</td>
+    <td style="text-align: right;">12,90</td>
   </tr>
   <br>
 <tr>
   <td colspan="3">Total asignaciones</td>
-  <td>Monto total asignaciones - deducciones</td>
+  <td style="text-align: right;">Bs. 245,05</td>
 </tr>
 <tr>
-  <td colspan="3">TOTAL A PAGAR</td>
-  <td>Monto total a pagar</td>
+  <td colspan="3" style="font-weight: bold;">TOTAL A PAGAR</td>
+  <td style="font-weight: bold; text-align: right;">Bs. 245,05</td>
 </tr>
 </table>
+</div>
 
+<br>
+
+<div class="final">
+  <p>
+    Yo,Yan Monasterios, C.I. N° 29912357, doy constancia que he recibido de la
+    empresa SOAINT C.A el monto correspondiente al pago de mis prestaciones
+    sociales según el artículo N° 142 "C" establecido en la Ley Orgánica del Trabajo de
+    los trabajadores y de las trabajadoras.
+  </p>
+<br>
+
+<table class="final-tabla">
+  <tr>
+    <td class="final-tabla">
+      Recibí conforme: ______________________________________________________
+    </td>
+
+      <td>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </td>
+
+  </tr>
+  <br>
+  <tr>
+    <td class="final-tabla">C.I.: __________________________</td>
+    <td class="final-tabla">Huella dactilar</td>
+  </tr>
+
+</table>
+
+</div>
 
 <br>
   </div>
   <div>
     <!--<button mat-raised-button color="primary" (click)="imprimirpdf()">Imprimir PDF</button>-->
-    <button mat-raised-button style="margin-right: 20px;" color="warn" routerLink="/dashboard/fijo">Volver</button>
     <button mat-raised-button color="primary" (click)="downloadImage()">Imprimir PDF</button>
   </div>
