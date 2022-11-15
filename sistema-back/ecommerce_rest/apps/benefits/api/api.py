@@ -27,14 +27,18 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk).order_by('datefin'), many=True)  
         # b = Benefits.objects.aggregate(Sum('apartado_mensual')) 
         suma_apartado = Benefits.objects.filter(id_name=pk).aggregate(Sum('apartado_mensual')) 
-
-        print(suma_apartado, 'suma total') 
+        total = Benefits.objects.filter(id_name = pk).last()
+         # print(total)
+        total_integral = total.salario_integral_diario*90
+        # print(total_integral, 'esta es el total integral')
+        # print(suma_apartado, 'suma total') 
 
         data = {
             "total": self.get_queryset().count(),
             "totalNotFiltered": self.get_queryset().count(),
             "rows": benefits_serializer.data,
-            "apartado": suma_apartado
+            "apartado": suma_apartado,
+            "total_integral": total_integral,
         } 
         return Response(data, status=status.HTTP_200_OK )
     
@@ -77,7 +81,7 @@ class BenefitsViewSet(viewsets.ModelViewSet):
             meses = (fecha_actual.year - fecha_inicial.year) * 12 + fecha_actual.month - fecha_inicial.month
             for f in range (meses):
                 un_mes = fecha_inicial + relativedelta(months=+1)
-                un_messtr  = datetime.datetime.strftime(un_mes,'%Y-%m-%d')
+                # un_messtr  = datetime.datetime.strftime(un_mes,'%Y-%m-%d')
                 fecha_inicial = un_mes
                 salario_diario = salario_mensual/30
                 round_salario = round(salario_diario, 2)
@@ -85,6 +89,8 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 bono_vacional_diario = round (salario_diario * 90/12/30, 2)
                 salario_integral = round (salario_diario + utilidades_diario + bono_vacional_diario, 2)
                 dias_prestaciones = 5
+                diff = relativedelta.relativedelta(fecha_actual,fecha_inicial)
+                print(diff, 'diferencia de fechas')
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
                 acumulado = round (apartado_mensual - 0) 
                 intereses= 0

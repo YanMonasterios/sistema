@@ -11,7 +11,7 @@
                         <mat-form-field appearance="legacy" class="ancho">
                             <mat-label>Nombre</mat-label>
                             <input matInput placeholder="Ingrese un Nombre" autocomplete="off" formControlName = "name">
-                            <mat-hint>Hint</mat-hint>
+                            <mat-hint>Nombre</mat-hint>
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="5"> 
@@ -21,20 +21,20 @@
                 <mat-form-field appearance="legacy" class="ancho">
                     <mat-label>Apellido</mat-label>
                     <input matInput placeholder="Ingrese un Apellido" autocomplete="off" formControlName = "last_name">
-                    <mat-hint>Hint</mat-hint>
+                    <mat-hint>Apellido</mat-hint>
                 </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <mat-form-field appearance="legacy" class="ancho">
                     <mat-label>Cedula</mat-label>
                     <input matInput placeholder="Ingrese una Cedula" autocomplete="off" input type="number"  formControlName = "CI">
-                    <mat-hint>Hint</mat-hint>
+                    <mat-hint>Cedula</mat-hint>
                 </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <mat-form-field class="ancho">
                     <mat-label>Departamento</mat-label>
-                    <mat-select>
+                    <mat-select formControlName = "id_department">
                         <mat-option *ngFor="let item of departamento"  [value]="item">{{item}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -55,7 +55,7 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1"> 
                 <button mat-raised-button style="margin-right: 20px;" routerLink="/dashboard/fijo">Volver</button>
-                <button mat-raised-button color="primary"  (click)="create()" (click)="showModal()" [disabled]="form.invalid" routerLink="/dashboard/fijo">Aceptar</button>
+                <button mat-raised-button color="primary"  (click)="create()" [disabled]="form.invalid" routerLink="/dashboard/fijo">Aceptar</button>
             </mat-grid-tile>
         </mat-grid-list>
     </form>

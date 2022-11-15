@@ -23,8 +23,8 @@ export class CrearUsuarioComponent implements OnInit {
     form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
-      id_department: new FormControl('', [Validators.required]),
       CI: new FormControl('', [Validators.required]),
+      id_department: new FormControl('', [Validators.required]),
       salary: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required]),
       created_at: new FormControl(`${this.current_timestamp}`),
@@ -36,6 +36,7 @@ export class CrearUsuarioComponent implements OnInit {
     this.current_timestamp = date.getFullYear() + '-' +  String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
     console.log(this.current_timestamp);
     console.log(this.form.value)
+    this.create()
   }
 
   onValue() {

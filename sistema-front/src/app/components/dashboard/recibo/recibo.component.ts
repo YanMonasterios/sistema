@@ -24,6 +24,7 @@ export class ReciboComponent implements OnInit {
   benefits:any =[];
   apartado:any;
   empleado:any;
+  integral: any;
   dataSource = new MatTableDataSource(this.benefits);
 
   constructor(
@@ -60,6 +61,8 @@ export class ReciboComponent implements OnInit {
     console.log(this.benefits);
     this.apartado = result.apartado.apartado_mensual__sum;
     console.log(this.apartado);
+    this.integral = result.total_integral
+    console.log(this.integral)
     this.dataSource.data = [];
     this.dataSource.data = this.benefits;
   });
