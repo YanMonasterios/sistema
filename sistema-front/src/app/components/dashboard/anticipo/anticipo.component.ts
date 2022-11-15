@@ -20,7 +20,21 @@ export class AnticipoComponent implements OnInit {
       anticipo: new FormControl('', [Validators.required]),
      })
 
+
+  onNoClick(): void {
+      this.dialogRef.close();
+  }
+
+
   ngOnInit(): void {
+    console.log(this.data);
+    let anticipo = this.data
+
+    console.log(anticipo)
+  }
+
+  onValue() {
+    console.log(this.form.value)
   }
 
   updateAntcipo() {

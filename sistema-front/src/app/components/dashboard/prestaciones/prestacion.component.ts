@@ -90,18 +90,12 @@ ngOnInit(): void {
     });
    }
 
-  //  anticipo(): void{
-  //   const dialogRef = this.dialog.open(AnticipoComponent, {
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
-  
-  // }
-
-  anticipo(): void{
+  anticipo(anticipo: any): void{
+    console.log(anticipo)
     const dialogRef = this.dialog.open(AnticipoComponent, {
+      data: anticipo
     });
+    console.log(anticipo, 'este es lo que trae de anticipo')
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
@@ -168,6 +162,33 @@ ngOnInit(): void {
       }
     })
    }
+
+
+   estatus(id:string){
+    console.log(id);
+  
+    Swal.fire({
+      title: 'estas seguro?',
+      text: "Deseas inactivar el empleado?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Inactivar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+          this.fijos.deleteFijos(id).subscribe(result =>{
+            console.log(result)
+          });
+      Swal.fire(
+        'inactivado!',
+        'El empleado ha sido inactivado exitosamente',
+        'success'
+        )
+      }
+    })
+  
+  }
    
 
 }

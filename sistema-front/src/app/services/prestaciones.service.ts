@@ -33,7 +33,7 @@ export class BenefitsServices {
    }
    
    updateBenefits( data:any,id:any): Observable<any>{
-  return this.http.put<any>(`${this.API_BENEFITS}benefits/benefits/${id}`, data);
+  return this.http.put<any>(`${this.API_BENEFITS}benefits/benefits/${id}/`, data);
    } 
 
   // putFijos(form: FijosI ):Observable<ResponseI>{

@@ -81,7 +81,7 @@ export class ReciboComponent implements OnInit {
     html2canvas(this.canvas.nativeElement).then(canvas => {
       var img = canvas.toDataURL("image/png");
       var doc = new jsPDF("p", "mm", "letter");
-      doc.addImage(img,'PNG',5, 10, 320, 150);
+      doc.addImage(img,'PNG',20, 5, 170, 250);
       doc.save("prestaciones.pdf");
     });
   }

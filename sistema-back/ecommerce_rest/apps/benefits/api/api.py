@@ -91,6 +91,7 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 dias_prestaciones = 5
                 diff = relativedelta.relativedelta(fecha_actual,fecha_inicial)
                 print(diff, 'diferencia de fechas')
+                # if fecha_inicial 
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
                 acumulado = round (apartado_mensual - 0) 
                 intereses= 0
