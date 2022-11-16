@@ -64,6 +64,7 @@ ngOnInit(): void {
  this.cargarGet(); 
  this.cargarData();
  this.getDatos();
+//  this.getDatosInactivos();
 //  this.prueba();
 
 // this.form.controls['name'].setValue(id.name);
@@ -89,6 +90,7 @@ ngOnInit(): void {
       this.dataSource.data = this.benefits;
     });
    }
+   
 
   anticipo(anticipo: any): void{
     console.log(anticipo)
@@ -126,6 +128,17 @@ ngOnInit(): void {
     })
 
   }
+
+  // getDatosInactivos() {
+  //   this.fijos.getAllInactivos().subscribe((res: any) => {
+  //     console.log(res.rows);       
+  //     console.log(res)
+  //     console.log(typeof(res.rows))
+  //     this.datos = res.rows.find((filas: any) => filas.id === this.id); 
+  //     console.log(this.datos);
+  //   })
+
+  // }
 
   funcion(){
     this.showModal();

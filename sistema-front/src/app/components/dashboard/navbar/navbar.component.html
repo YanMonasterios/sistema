@@ -4,6 +4,9 @@
   </a>
     <span class="example-spacer"></span>
     <button mat-button *ngFor="let item of menu" [routerLink] = 'item.redirect'>{{item.nombre}}</button>
+    <!-- <button mat-button routerLink="/dashboard/" ><mat-icon>home</mat-icon>INICIO</button>
+    <button mat-button routerLink="/dashboard/users"><mat-icon>person</mat-icon>USUARIO</button>
+    <button mat-button routerLink="/dashboard/reports"><mat-icon>reports</mat-icon>REPORTES</button> -->
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
         <mat-icon routerLink="/login">logout</mat-icon>

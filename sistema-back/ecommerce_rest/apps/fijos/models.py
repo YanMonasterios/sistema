@@ -7,7 +7,7 @@ from apps.base.models import BaseModel
 
 class Fijos(BaseModel):
 
-    name = models.CharField('Nombre', max_length=150, unique= True, blank = False, null = False)
+    name = models.CharField('Nombre', max_length=150, unique= False, blank = False, null = False)
     last_name = models.CharField('Apellidos', max_length = 255, blank = True, null = True)
     CI = models.CharField('Cedula', max_length = 255, blank = True, null = True)
     salary = models.FloatField('Salario', max_length = 255, blank = True, null = True)

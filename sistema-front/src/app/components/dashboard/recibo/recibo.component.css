@@ -9,7 +9,7 @@
 .logolc{
   display:flex;
   height: 60px;
-  width: 100px;
+  width: 200px;
 }
 
 table{
@@ -71,7 +71,7 @@ align-items: center;
 
 .tabla-encabezado{
   display:flex;
-  border: none;
+  /* border: none; */
   font-size: medium;
   flex-wrap:wrap;
   justify-content: center;

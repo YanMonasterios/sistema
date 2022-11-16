@@ -21,6 +21,7 @@ export class MesTasaComponent implements OnInit {
     })
 
   ngOnInit(): void {
+    this.createTasa();
   }
 
   createTasa() {

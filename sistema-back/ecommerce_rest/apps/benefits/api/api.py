@@ -89,8 +89,8 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 bono_vacional_diario = round (salario_diario * 90/12/30, 2)
                 salario_integral = round (salario_diario + utilidades_diario + bono_vacional_diario, 2)
                 dias_prestaciones = 5
-                diff = relativedelta.relativedelta(fecha_actual,fecha_inicial)
-                print(diff, 'diferencia de fechas')
+                # diff = relativedelta.relativedelta(fecha_actual,fecha_inicial)
+                # print(diff, 'diferencia de fechas')
                 # if fecha_inicial 
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
                 acumulado = round (apartado_mensual - 0) 
