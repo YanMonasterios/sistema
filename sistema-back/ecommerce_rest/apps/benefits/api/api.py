@@ -9,6 +9,7 @@ from apps.benefits.models import Benefits
 from apps.fijos.models import Fijos
 from dateutil.relativedelta import relativedelta
 import datetime 
+# from datetime import datetime
 from django.db.models import Sum
 
 
@@ -68,11 +69,16 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         fijos = Fijos.objects.all()
         # fecha = request.data['fecha']
         tasa = int(request.data['tasa'])
+        print('recibi tasa')
         for val in fijos.iterator():
             id_fijos = val.id
             salario_mensual = val.salary
             fecha_actual = date.today()
+            fecha_actual_dias = date.today()
             fecha_actualstr  = datetime.datetime.strftime(fecha_actual,'%Y-%m-%d')
+            benefits = Benefits.objects.filter(id_name=id_fijos).last()
+            fecha_diasprestaciones = val.date 
+            print(fecha_diasprestaciones)
             benefits = Benefits.objects.filter(id_name=id_fijos).last()
             if benefits:
                 fecha_inicial = benefits.datefin
@@ -89,9 +95,11 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 bono_vacional_diario = round (salario_diario * 90/12/30, 2)
                 salario_integral = round (salario_diario + utilidades_diario + bono_vacional_diario, 2)
                 dias_prestaciones = 5
-                # diff = relativedelta.relativedelta(fecha_actual,fecha_inicial)
-                # print(diff, 'diferencia de fechas')
-                # if fecha_inicial 
+                diff = relativedelta(fecha_actual_dias,fecha_diasprestaciones)
+                diff_paso = diff.years 
+                print(diff_paso, 'diferencia de fechas a años:')
+                if diff.years != 0 :
+                    dias_prestaciones = 5 + diff.years 
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
                 acumulado = round (apartado_mensual - 0) 
                 intereses= 0
