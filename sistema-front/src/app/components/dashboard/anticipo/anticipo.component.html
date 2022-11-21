@@ -1,14 +1,14 @@
 <h1 mat-dialog-title>Anticipo</h1>
-<form [formGroup]="form">
+<form [formGroup]="form" (submit)="updateAnticipo()">
   <div class="example-container"> 
     <mat-form-field class="margen" appearance="fill">
      <mat-label>Anticipo</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "anticipo">
+    <input matInput input type="number" matInput autocomplete="off" formControlName = "anticipo">
     </mat-form-field>
 </div>
   <div class="example-button-row" >
     <button mat-raised-button style="margin-right: 20px;" color="warn" mat-dialog-close>Cerrar</button>
-    <button mat-raised-button type="submit" color="blue" mat-dialog-close>Procesar</button>
+    <button mat-raised-button type="submit" color="blue" >Procesar</button>
     
 </div>
 </form>

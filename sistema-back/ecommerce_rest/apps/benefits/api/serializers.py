@@ -26,6 +26,7 @@ class BenefitsSerializer(serializers.ModelSerializer):
             'datefin': instance.datefin,
             'month': instance.month,
             'date_tasa': instance.date_tasa,
+            'antiguedad': instance.antiguedad,
             
             
             

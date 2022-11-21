@@ -27,6 +27,7 @@
     "angular-font-awesome": "^3.1.2",
     "angular-material-data-table": "^0.10.10",
     "angular-paginator": "^8.0.0",
+    "bootstrap": "^5.2.2",
     "find": "^0.3.0",
     "font-awesome": "^4.7.0",
     "jspdf": "^2.5.1",

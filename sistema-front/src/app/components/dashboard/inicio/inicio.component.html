@@ -2,16 +2,27 @@
   <h1 class="title"> CALCULO DE PRESTACIONES SOCIALES </h1>
 </div> -->
 <div class="body" src="assets/img/fondo.png" style="opacity: 5;">
-  <!-- <div class="date">
-    <p style="color:#0047a3">Fecha y hora: </p>
-    {{myDate | date: 'dd-MM-yyyy, h:mm a'}}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
 
-  
-  </div> -->
-      <div class="imagen">
-         <img src="assets/img/inicio.png"width="1800" height="900">
-       <!-- <mat-raised-button routerLink="/dashboard/fijo"><mat-icon>assignment_ind</mat-icon></mat-raised-button> -->
-       <div class="centrado"><button class="button"  routerLink="/dashboard/fijo">Ver Personal</button></div>
+        <div class="date mt-3">
+          <h3 style="color:#0047a3" class="mb-0">Fecha y hora: </h3>
+          <h2 class="mt-0">
 
+            {{myDate | date: 'dd-MM-yyyy, h:mm a'}}  
+          </h2>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="granImagen position-relative" style="background-image:url('assets/img/inicio.png') ;"> 
+
+          <!-- <img src=""width="1800" height="900"> -->
+          <!-- <mat-raised-button routerLink="/dashboard/fijo"><mat-icon>assignment_ind</mat-icon></mat-raised-button> -->
+          <div class="centrado position-absolute"><button class="button"  routerLink="/dashboard/fijo">Ver Personal</button></div>
+        </div>
+          
       </div>
     </div>
+  </div>
+</div>

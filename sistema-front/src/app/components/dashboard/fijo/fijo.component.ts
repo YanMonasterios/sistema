@@ -16,6 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import Swal from 'sweetalert2';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MesTasaComponent } from '../mes-tasa/mes-tasa.component';
+import { VacacionesComponent } from './../vacaciones/vacaciones.component';
 
 @Component({
   selector: 'app-fijo',
@@ -136,22 +137,3 @@ prestacion_social(id:number): void{
  
  }
 
-
-
-
-
-
- // cargarData(estatus: number ){
-//   console.log(estatus)
-//   const Data = this.personal.value
-//   Data.tipo = estatus
-//   this.service.getAllFijos(Data).subscribe(result => {
-//     console.log(estatus)
-//     this.fijo = result.rows;
-//     console.log(this.fijo);
-//     this.dataSource.data = [];
-//     this.dataSource.data = this.fijo;
-
-    
-//   });
-// }

@@ -11,12 +11,13 @@ import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es-VE';
 import { MatTableDataSource } from '@angular/material/table';
 registerLocaleData(localeES, 'es-VE');
+
 @Component({
-  selector: 'app-recibo',
-  templateUrl: './recibo.component.html',
-  styleUrls: ['./recibo.component.css']
+  selector: 'app-recibo-inactivos',
+  templateUrl: './recibo-inactivos.component.html',
+  styleUrls: ['./recibo-inactivos.component.css']
 })
-export class ReciboComponent implements OnInit {
+export class ReciboInactivosComponent implements OnInit {
   CurrentDate = new Date();
   motivo: any[] = ['Renuncia', 'Despido']
   anio: number;
@@ -29,20 +30,14 @@ export class ReciboComponent implements OnInit {
   vacaciones: any;
   utilidades: any;
   intereses: any;
-  anticipo: any;
   total: any;
   dataSource = new MatTableDataSource(this.benefits);
 
-  constructor(
-    private fijos: FijosServices,
-    private beneficios: BenefitsServices,
-    private ruta: ActivatedRoute,    
-  ) { 
-    this.anio = new Date().getFullYear();
-    
-  }
-
-
+  constructor(  private fijos: FijosServices,
+                private beneficios: BenefitsServices,
+                private ruta: ActivatedRoute,   ) { 
+                  this.anio = new Date().getFullYear();
+                }
 
   ngOnInit(): void {
     // this.datosFijos();
@@ -50,13 +45,13 @@ export class ReciboComponent implements OnInit {
     this.ruta.params
     // .filter((params:any) => params.id)
     .subscribe((params:any) => {
-      this.fijos.getAllFijos().subscribe((result: any) => {
-        // console.log(result)
+      this.fijos.getAllInactivos().subscribe((result: any) => {
+        console.log(result)
         this.misdatos = result ;
        
     this.order = params.id;
-    // console.log(this.order)
-    // console.log(result)
+    console.log(this.order)
+    console.log(result)
     result.rows.map((emplea:any) => {
       if (emplea.id == params.id){
         this.empleado = emplea;
@@ -67,19 +62,16 @@ export class ReciboComponent implements OnInit {
   });
   this.beneficios.getAllBenefits(params.id).subscribe(result => {
     this.benefits = result.rows.at(-1); //rows viene de la consola , trae el ultimo registro
-    // console.log(this.benefits);
+    console.log(this.benefits);
     this.apartado = result.apartado.apartado_mensual__sum;
-    // console.log(this.apartado);
+    console.log(this.apartado);
     this.integral = result.total_integral
-    // console.log(this.integral)
+    console.log(this.integral)
     this.intereses = result.total_intereses.intereses_prestaciones__sum
-    // console.log(this.intereses)
-    this.anticipo = result.suma_anticipo.anticipo__sum
-    // console.log(this.anticipo)
+    console.log(this.intereses)
+
     this.dataSource.data = [];
     this.dataSource.data = this.benefits;
-    this.total = this.integral + this.intereses + this.empleado.total_vacaciones_frac + this.empleado.total_bono_frac + this.empleado.total_utilidades
-
   });
   // this.fijos.enviarVacaciones(params.id).subscribe((result: any) => {
   //   console.log(result)
@@ -106,4 +98,3 @@ export class ReciboComponent implements OnInit {
     });
   }
 } 
-

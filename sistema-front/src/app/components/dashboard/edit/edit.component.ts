@@ -69,6 +69,21 @@ export class EditComponent implements OnInit {
     console.log(this.data.id);
     this.service.updateFijos(empleado, this.data.id).subscribe(respuesta => {
       console.log(respuesta);
+      if (respuesta.message !== undefined){
+        Swal.fire(
+          'actualizacion realizada',
+          '',
+          'success'
+        )
+        this.dialogRef.close()
+      }else{
+        Swal.fire(
+          'No se logro actualizar, comuniquese con el administrador',
+          '',
+          'error'
+        )
+        this.dialogRef.close()
+      }
     })
    
   }

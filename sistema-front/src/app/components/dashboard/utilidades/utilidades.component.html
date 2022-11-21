@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Agregar Utilidades</h1>
+<form [formGroup]="form" (submit)="createUtilidades()">
+  <div class="example-container"> 
+    <mat-form-field class="margen" appearance="fill">    
+     <mat-label>Utilidades</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "recibi_utilidades">
+    </mat-form-field>
+  </div>
+  <p> anticipo utilidades : {{data?.utilidades}}  </p>
+  <div class="example-button-row" >
+    <button mat-stroked-button style="margin-right: 20px;" color="warn" mat-dialog-close>Cerrar</button>
+    <button mat-stroked-button type="submit" color="primary" mat-dialog-close>Guardar</button>
+</div>

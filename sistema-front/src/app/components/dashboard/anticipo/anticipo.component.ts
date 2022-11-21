@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,7 +18,7 @@ export class AnticipoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private servicio:BenefitsServices) { }
 
     form = new FormGroup({
-      anticipo: new FormControl('', [Validators.required]),
+      anticipo: new FormControl(0, [Validators.required]),
      })
 
 
@@ -37,14 +38,15 @@ export class AnticipoComponent implements OnInit {
     console.log(this.form.value)
   }
 
-  updateAntcipo() {
+  updateAnticipo() {
     const anticipo = this.form.value
-    console.log('estoy actualizando anticipo')
-    console.log(this.data.id);
-    this.servicio.updateBenefits(anticipo, this.data.id).subscribe(respuesta => {
-      console.log(respuesta);
+    console.log(this.data);
+    console.log(anticipo);
+    this.servicio.updateBenefits(anticipo, this.data).subscribe(respuesta => {
+      if(respuesta.total !== undefined){
+        this.dialogRef.close();
+      }
     })
-   
   }
 
 }

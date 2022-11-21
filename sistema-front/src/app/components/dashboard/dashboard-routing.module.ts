@@ -17,7 +17,8 @@ import { AnticipoComponent } from './anticipo/anticipo.component';
 import { VacacionesComponent } from './vacaciones/vacaciones.component';
 import { InactivosComponent } from './inactivos/inactivos.component';
 import { ReciboComponent } from './recibo/recibo.component';
-
+import { UtilidadesComponent } from './utilidades/utilidades.component';
+import { ReciboInactivosComponent } from './recibo-inactivos/recibo-inactivos.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:[
@@ -35,8 +36,11 @@ const routes: Routes = [
     { path: 'pdf', component: PdfComponent },
     { path: 'Anticipo', component: AnticipoComponent },
     { path: 'vacaciones', component: VacacionesComponent },
+    { path: 'utilidades', component: UtilidadesComponent },
     { path: 'inactivos', component: InactivosComponent },
     { path: 'recibo/:id', component: ReciboComponent },
+    { path: 'recibo-inactivos/:id', component: ReciboInactivosComponent },
+    
 
 
   ]}

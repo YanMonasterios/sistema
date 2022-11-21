@@ -1,14 +1,27 @@
 <mat-toolbar class="toolbar">
-  <a class="navbar-item">
-    <img  class="logo" src="assets/img/Logo.png" >
-  </a>
-    <span class="example-spacer"></span>
-    <button mat-button *ngFor="let item of menu" [routerLink] = 'item.redirect'>{{item.nombre}}</button>
-    <!-- <button mat-button routerLink="/dashboard/" ><mat-icon>home</mat-icon>INICIO</button>
-    <button mat-button routerLink="/dashboard/users"><mat-icon>person</mat-icon>USUARIO</button>
-    <button mat-button routerLink="/dashboard/reports"><mat-icon>reports</mat-icon>REPORTES</button> -->
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon routerLink="/login">logout</mat-icon>
-    </button>
-</mat-toolbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+
+        <a class="navbar-item">
+          <img  class="logo" src="assets/img/Logo.png" >
+        </a>
+      </div>
+      <div class="col-md-8 justify-items-center text-center justify-content-center">
+
+        <span class="example-spacer"></span>
+        <button mat-button *ngFor="let item of menu" [routerLink] = 'item.redirect'>{{item.nombre}}</button>
+        <!-- <button mat-button routerLink="/dashboard/" ><mat-icon>home</mat-icon>INICIO</button>
+          <button mat-button routerLink="/dashboard/users"><mat-icon>person</mat-icon>USUARIO</button>
+          <button mat-button routerLink="/dashboard/reports"><mat-icon>reports</mat-icon>REPORTES</button> -->
+          <span class="example-spacer"></span>
+        </div>
+        <div class="col-md-2 text-end">
+
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon routerLink="/login">logout</mat-icon>
+          </button>
+        </div>
+    </div>
+    </div>
+    </mat-toolbar>

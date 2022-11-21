@@ -18,6 +18,7 @@ import { AnticipoComponent } from '../anticipo/anticipo.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { ReciboComponent } from '../recibo/recibo.component';
+import { UtilidadesComponent } from './../utilidades/utilidades.component';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class prestacionComponent  {
   displayedColumns: string[] = [ 'datefin','salario_basico_mensual', 'salario_basico_diario', 'utilidades_diario','bono_vacional_diario',
                                  'salario_integral_diario','dias_prestaciones','apartado_mensual','anticipo','acumulado','tasa',
                                  'intereses_prestaciones'];
+  idViaje:number = 0;
 //  dataSource1 = new MatTableDataSource(this.pruebafijo);
 //  displayedColumns1: string[] = [ 'name', 'CI', 'date'];                  
 
@@ -54,20 +56,12 @@ constructor(private fijos: FijosServices,
             ) {}
             //public dialog: MatDialog ){}
 
-
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-                      })
-
 ngOnInit(): void {
 // let empleado = this.data.id
  this.cargarGet(); 
  this.cargarData();
  this.getDatos();
-//  this.getDatosInactivos();
-//  this.prueba();
 
-// this.form.controls['name'].setValue(id.name);
 
 }
 
@@ -84,7 +78,9 @@ ngOnInit(): void {
 
   cargarData(){
     this.beneficios.getAllBenefits(this.id).subscribe(result => {
+      console.log(result.rows)
       this.benefits = result.rows; //rows viene de la consola 
+      this.idViaje = result.rows.at(-1).id;
       // console.log(this.benefits);
       this.dataSource.data = [];
       this.dataSource.data = this.benefits;
@@ -93,22 +89,32 @@ ngOnInit(): void {
    
 
   anticipo(anticipo: any): void{
-    console.log(anticipo)
-    const dialogRef = this.dialog.open(AnticipoComponent, {
-      data: anticipo
-    });
-    console.log(anticipo, 'este es lo que trae de anticipo')
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
-        this.rutas.navigate(['/dashboard/fijo'])
-      })
-    
-    });
+    if (this.benefits.at(-1).anticipo == 0) {
+      const dialogRef = this.dialog.open(AnticipoComponent, {
+        data: anticipo
+      });
+      console.log(anticipo, 'este es lo que trae de anticipo')
+      dialogRef.afterClosed().subscribe(result => {
+        this.rutas.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.rutas.navigate(['/dashboard/fijo'])
+        })
+      });
+    }
   }
 
   vacaciones(): void{
     const dialogRef = this.dialog.open(VacacionesComponent, {
+      data: this.datos
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  
+  }
+
+  utilidades(): void{
+    const dialogRef = this.dialog.open(UtilidadesComponent, {
+      data: this.datos
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -140,21 +146,6 @@ ngOnInit(): void {
 
   // }
 
-  funcion(){
-    this.showModal();
-    this.generatePDF();
-  }
-
-  generatePDF() {
-    const pdf = new PdfMakeWrapper();
-
-    pdf.add(
-      new Txt('recibo pdf!!').bold().italics().end
-    );
-    pdf.create().open(); 
-
-    
-  }
 
   showModal(){
     Swal.fire({

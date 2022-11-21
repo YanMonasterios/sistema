@@ -1,0 +1,86 @@
+.principal{
+    display: flex;
+    flex-wrap:wrap;
+    width: 700px;
+    justify-content: center;
+    overflow-y: visible;
+  }
+  
+  .logolc{
+    display:flex;
+    height: 60px;
+    width: 200px;
+  }
+  
+  table{
+    border-collapse: collapse;
+    border: solid thin #838383;
+    border-radius: 10px;
+    font-size: medium;
+  }
+  
+  td, th{
+    border: solid thin #838383;
+  }
+  
+  td th:first-of-type{
+    border-top-left-radius: 10px;
+  }
+  
+  tr th:last-of-type{
+    border-top-right-radius: 10px;
+  }
+  
+  tr:last-of-type td:first-of-type{
+    border-bottom-left-radius: 10px;
+  }
+  
+  tr:last-of-type td:last-of-type{
+    border-bottom-right-radius: 10px;
+  }
+  
+  .titulo{
+    display: flex;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .tabla{
+  display:flex;
+  font-size: medium;
+  }
+  
+  .detalle{
+  padding: 20px;
+  align-items: center;
+  }
+  
+  .titulo-cuadro{
+    font-size: large;
+  }
+  
+  .final{
+    font-size: medium;
+    text-align: justify;
+    margin-left: 2px;
+  }
+  
+  .final-tabla{
+    border: none;
+  }
+  
+  .tabla-encabezado{
+    display:flex;
+    /* border: none; */
+    font-size: medium;
+    flex-wrap:wrap;
+    justify-content: center;
+    padding: 20px;
+    }
+  
+    .boton{
+      display: flex;
+      justify-content: center;
+      width: 700px;
+      padding: 20px;
+    }

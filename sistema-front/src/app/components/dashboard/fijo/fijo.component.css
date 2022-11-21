@@ -2,17 +2,7 @@ table {
   width: 100%;
 }
 
-.container{
-  align-content: center;
-  justify-content: space-around;
-  flex-direction: column-reverse;
-  /* align-items: center; */
-  flex-wrap: nowrap;
-  height: 30%;
-  align-content: space-around;
-  justify-content: space-around;
-  margin-top: 4%;
-}
+
 
 
 th {

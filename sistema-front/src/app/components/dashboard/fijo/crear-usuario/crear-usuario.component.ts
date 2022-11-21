@@ -49,9 +49,22 @@ export class CrearUsuarioComponent implements OnInit {
     console.log(data);
     this.service.createFijos(data).subscribe(data => {
       console.log(data);
-      this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
-        this.rutas.navigate(['/dashboard/fijo'])
-      })
+      if (data.message !== undefined){
+        Swal.fire(
+          'empleado creado exitosamente',
+          '',
+          'success'
+        )
+        this.rutas.navigateByUrl('/', { skipLocationChange: true }).then (() => {
+          this.rutas.navigate(['/dashboard/fijo'])
+        })
+      }else{
+        Swal.fire(
+          'No se logro crear empleado, comuniquese con el administrador',
+          '',
+          'error'
+        )
+      }
     })
   }
 

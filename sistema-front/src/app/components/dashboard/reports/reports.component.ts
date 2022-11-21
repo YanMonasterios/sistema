@@ -18,9 +18,10 @@ import { BenefitsServices } from 'src/app/services/prestaciones.service';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
+  id: number = 0;
   fijo: any[] = [];
   dataSource = new MatTableDataSource(this.fijo);
-  displayedColumns: string[] = [ 'id','name', 'last_name', 'CI','id_department','date', 'prestacion social'];
+  displayedColumns: string[] = [ 'id','name', 'last_name', 'CI','id_department','date', 'recibo'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;  
   @ViewChild(MatSort) sort!: MatSort;

@@ -21,6 +21,13 @@ class FijosSerializer(serializers.ModelSerializer):
             # 'num': instance.num,
             'date': instance.date,
             'salary': instance.salary,
+            'dias_frac': instance.dias_frac,
+            'total_vacaciones_frac' : instance.total_vacaciones_frac,
+            'bono_frac': instance.bono_frac,
+            'total_bono_frac' : instance.total_bono_frac,
+            'utilidades' : instance.utilidades,
+            'total_utilidades' : instance.total_utilidades,
+            
 
         }
           

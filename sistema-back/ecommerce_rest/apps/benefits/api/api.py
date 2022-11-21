@@ -24,15 +24,33 @@ class BenefitsViewSet(viewsets.ModelViewSet):
     
     def retrieve(self, request, pk=None):
         print('paso retrieve')
-        print(pk)
+        # print(pk)
+        
+        # fijos = Fijos.objects.all()
+        # for val in fijos.iterator():
+        #  id_fijos = val.id
+        #  fecha_actual = date.today()
+        #  benefits = Benefits.objects.filter(id_name=id_fijos).last()
+        #  fecha_antiguedad = val.date
+        #  diff = relativedelta(fecha_antiguedad,fecha_actual)
+        #  diff_paso = diff.years 
+        # print(diff_paso, 'diferencia de fechas a años:')
+        # # if diff.years != 0 :
+        # #  dias_prestaciones = 30 + diff.years 
+        
+        #no tocar abajo
         benefits_serializer = self.get_serializer(Benefits.objects.filter(id_name=pk).order_by('datefin'), many=True)  
         # b = Benefits.objects.aggregate(Sum('apartado_mensual')) 
         suma_apartado = Benefits.objects.filter(id_name=pk).aggregate(Sum('apartado_mensual')) 
         total = Benefits.objects.filter(id_name = pk).last()
-         # print(total)
-        total_integral = total.salario_integral_diario*90
+        # print(total)
+        total_integral = total.salario_integral_diario*30
         # print(total_integral, 'esta es el total integral')
         # print(suma_apartado, 'suma total') 
+        suma_intereses = Benefits.objects.filter(id_name=pk).aggregate(Sum('intereses_prestaciones')) 
+        suma_anticipo = Benefits.objects.filter(id_name=pk).aggregate(Sum('anticipo')) 
+        print(suma_anticipo,'anticipo')
+        print(suma_intereses, 'total intereses')
 
         data = {
             "total": self.get_queryset().count(),
@@ -40,6 +58,8 @@ class BenefitsViewSet(viewsets.ModelViewSet):
             "rows": benefits_serializer.data,
             "apartado": suma_apartado,
             "total_integral": total_integral,
+            "total_intereses":suma_intereses,
+            "suma_anticipo":suma_anticipo,
         } 
         return Response(data, status=status.HTTP_200_OK )
     
@@ -68,7 +88,7 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         benefits_serializer = self.get_serializer(Benefits.objects.all(), many=True)
         fijos = Fijos.objects.all()
         # fecha = request.data['fecha']
-        tasa = int(request.data['tasa'])
+        tasa = float(request.data['tasa'])
         print('recibi tasa')
         for val in fijos.iterator():
             id_fijos = val.id
@@ -78,7 +98,7 @@ class BenefitsViewSet(viewsets.ModelViewSet):
             fecha_actualstr  = datetime.datetime.strftime(fecha_actual,'%Y-%m-%d')
             benefits = Benefits.objects.filter(id_name=id_fijos).last()
             fecha_diasprestaciones = val.date 
-            print(fecha_diasprestaciones)
+            # print(fecha_diasprestaciones)
             benefits = Benefits.objects.filter(id_name=id_fijos).last()
             if benefits:
                 fecha_inicial = benefits.datefin
@@ -101,13 +121,13 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 if diff.years != 0 :
                     dias_prestaciones = 5 + diff.years 
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
-                acumulado = round (apartado_mensual - 0) 
+                acumulado = round (apartado_mensual) 
                 intereses= 0
-                intereses_prestaciones = round ((acumulado * tasa) / (360*30), 2)
+                intereses_prestaciones = round ((acumulado * (tasa/100)) / (360*30), 2)
                 b = Benefits(salario_basico_mensual=salario_mensual,salario_basico_diario=round_salario, utilidades_diario=utilidades_diario,
                         bono_vacional_diario=bono_vacional_diario,salario_integral_diario=salario_integral,dias_prestaciones=dias_prestaciones,
                         apartado_mensual=apartado_mensual, anticipo=0, acumulado=acumulado,tasa=tasa,intereses=intereses, 
-                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha_actualstr, id_name = val, datefin=fecha_inicial )
+                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha_actualstr, id_name = val, datefin=fecha_inicial)
                 b.save()
 
             
@@ -129,3 +149,6 @@ class BenefitsViewSet(viewsets.ModelViewSet):
         return Response({'error':'No existe un empleado fijo con estos datos!'}, status=status.HTTP_400_BAD_REQUEST)
         
 
+
+# vacaciones_frac = int(request.data['vacaciones'])
+# Benefits.objects.filter(id=pk).update(vacaciones_frac=vacaciones_frac) 

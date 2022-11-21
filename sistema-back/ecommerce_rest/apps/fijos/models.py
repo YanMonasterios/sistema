@@ -13,6 +13,12 @@ class Fijos(BaseModel):
     salary = models.FloatField('Salario', max_length = 255, blank = True, null = True)
     id_department = models.CharField('Departamento', max_length=150, unique= False, blank = False, null = False)
     # num = models.CharField('Telefono', max_length=150, unique= True, blank = False, null = False)
+    dias_frac = models.FloatField('dias vacaciones fraccionadas', max_length = 255, blank = True, null = True)
+    bono_frac = models.FloatField('bono vacaciones fraccionadas', max_length = 255, blank = True, null = True)
+    total_vacaciones_frac = models.FloatField('total vacaciones fraccionadas', max_length = 255, blank = True, null = True)
+    total_bono_frac = models.FloatField('total vacaciones fraccionadas', max_length = 255, blank = True, null = True)
+    utilidades = models.FloatField('utilidades fraccionadas', max_length = 255, blank = True, null = True)
+    total_utilidades = models.FloatField('total utilidades fraccionadas', max_length = 255, blank = True, null = True)
     date = models.DateField('Fecha de ingreso', unique= False, blank = False, null = True )  
     historical = HistoricalRecords()
 

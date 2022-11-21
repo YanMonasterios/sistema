@@ -1,9 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ResponseI } from '../modelos/response.interface';
-import { loginI } from '../modelos/login.interface';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { id } from "@swimlane/ngx-datatable";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +30,7 @@ export class BenefitsServices {
    }
    
    updateBenefits( data:any,id:any): Observable<any>{
+    console.log(id)
   return this.http.put<any>(`${this.API_BENEFITS}benefits/benefits/${id}/`, data);
    } 
 

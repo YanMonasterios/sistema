@@ -43,6 +43,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { InactivosComponent } from './inactivos/inactivos.component';
 import { MesTasaComponent } from './mes-tasa/mes-tasa.component';
 import { ReciboComponent } from './recibo/recibo.component';
+import { UtilidadesComponent } from './utilidades/utilidades.component';
+import { ReciboInactivosComponent } from './recibo-inactivos/recibo-inactivos.component';
 
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 
@@ -71,6 +73,8 @@ import { ReciboComponent } from './recibo/recibo.component';
     InactivosComponent,
     MesTasaComponent,
     ReciboComponent,
+    UtilidadesComponent,
+    ReciboInactivosComponent,
     
   ],
   imports: [

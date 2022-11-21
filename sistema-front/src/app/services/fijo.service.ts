@@ -39,6 +39,13 @@ export class FijosServices {
     return this.http.post<any>(`${this.API_FIJOS}benefits/benefits/`,data); 
    }
 
+   public enviarVacaciones(data:any): Observable<any>{
+      return this.http.put<any>(`${this.API_FIJOS}fijos/fijos/vacaciones/`,data); 
+     }
+
+   public enviarUtilidades(data:any): Observable<any>{
+      return this.http.put<any>(`${this.API_FIJOS}fijos/fijos/utilidades/`,data); 
+     }
 
 
   

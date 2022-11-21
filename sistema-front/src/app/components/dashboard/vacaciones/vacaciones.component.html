@@ -1,31 +1,21 @@
 <h1 mat-dialog-title>Agregar Vacaciones</h1>
-<form [formGroup]="form">
+<form [formGroup]="form" (submit)="createVacaciones()">
+  <p>Dias Disfrutados: {{data?.dias_frac}} </p>
   <div class="example-container"> 
     <mat-form-field class="margen" appearance="fill">    
-     <mat-label>Vacaciones fraccionadas</mat-label>
-    <input matInput input type="text" matInput autocomplete="off" formControlName = "vacaciones_fracs">
+     <mat-label>Cargar Dias Disfrutados</mat-label>
+    <input matInput input type="text" matInput autocomplete="off" formControlName = "recibi_dias">
     </mat-form-field>
   </div>
+  <p> Bono Vacacional Cancelado: {{data?.bono_frac}} </p>
   <div class="example-container"> 
     <mat-form-field appearance="fill">
      <mat-label>Bono vacacional fraccionado</mat-label>
-        <input matInput input type="number" matInput autocomplete="off" formControlName = "bono_vacacional">
+        <input matInput input type="number" matInput autocomplete="off" formControlName = "recibi_bono">
     </mat-form-field>
-</div>
-<div class="example-container"> 
-  <mat-form-field appearance="fill">
-   <mat-label>Vacaciones Vencidas</mat-label>
-      <input matInput input type="number" matInput autocomplete="off" formControlName = "vacaciones_vencidas">
-  </mat-form-field>
-</div>
-<div class="example-container"> 
-  <mat-form-field appearance="fill">
-   <mat-label>Bono vacacional vencido</mat-label>
-      <input matInput input type="number" matInput autocomplete="off" formControlName = "bono_vac_vencidos">
-  </mat-form-field>
-</div>
+  </div>
   <div class="example-button-row" >
-    <button mat-raised-button style="margin-right: 20px;" color="warn" mat-dialog-close>Cerrar</button>
-    <button mat-raised-button color="blue" mat-dialog-close>Procesar</button>
+    <button mat-stroked-button style="margin-right: 20px;" color="warn" mat-dialog-close>Cerrar</button>
+    <button mat-stroked-button type="submit" color="primary" mat-dialog-close>Guardar</button>
 </div>
 <!-- </form> -->

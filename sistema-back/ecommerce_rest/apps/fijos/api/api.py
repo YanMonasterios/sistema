@@ -26,19 +26,6 @@ class FijosViewSet(viewsets.ModelViewSet):
         }
         return Response(data, status=status.HTTP_200_OK)
     
-    # @action(detail=False, methods=['get'])
-    # def activos(self, request):
-    #     fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
-    #     print('trajo los activos')
-        
-    #     data = {
-    #         "total": self.get_queryset().count(),
-    #         "totalNotFiltered": self.get_queryset().count(),
-    #         "rows": fijos_serializer.data
-    #     }
-        
-    #     return Response(data, status=status.HTTP_200_OK)
-    
     @action(detail=False, methods=['get'])
     def inactivos(self, request):
         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
@@ -51,24 +38,50 @@ class FijosViewSet(viewsets.ModelViewSet):
         }
         
         return Response(data, status=status.HTTP_200_OK)     
+            
+    @action(detail=False, methods=['put'])
+    def vacaciones(self, request):
+        print('paso vacaciones')
+        pk = request.data['id']
+        fijos_serializer = self.get_serializer(Fijos.objects.filter(id=pk), many=True)
+        recibi_dias = float(request.data['recibi_dias'])
+        recibi_bono = float(request.data['recibi_bono'])
+        Fijos.objects.filter(id=pk).update(dias_frac=recibi_dias) 
+        Fijos.objects.filter(id=pk).update(bono_frac=recibi_bono) 
+        b = Fijos.objects.filter(id=pk)
+        recibi_dias = round (float(b[0].salary/30) * recibi_dias, 2) 
+        Fijos.objects.filter(id=pk).update(total_vacaciones_frac=recibi_dias) 
+        recibi_bono = round (float(b[0].salary/30) * recibi_bono, 2) 
+        Fijos.objects.filter(id=pk).update(total_bono_frac=recibi_bono) 
         
+        data = {
+            "total": self.get_queryset().count(),
+            "totalNotFiltered": self.get_queryset().count(),
+            "rows": fijos_serializer.data
+        }
         
+        return Response(data, status=status.HTTP_200_OK)    
+    
+    @action(detail=False, methods=['put'])
+    def utilidades(self, request):
+        print('paso utilidades')
+        pk = request.data['id']
+        fijos_serializer = self.get_serializer(Fijos.objects.filter(id=pk), many=True)
+        recibi_utilidades = float(request.data['recibi_utilidades'])
+        Fijos.objects.filter(id=pk).update(utilidades=recibi_utilidades) 
+        b = Fijos.objects.filter(id=pk)
+        recibi_utilidades = round (float(b[0].salary/30) * recibi_utilidades, 2) 
+        Fijos.objects.filter(id=pk).update(total_utilidades=recibi_utilidades) 
         
-    # def list(self, request):
-    #     print('paso list')
-    #     tipo_fijo = request.data['tipo']
-    #     if tipo_fijo == int(0):
-    #         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
-    #         print('trajo los activos')
-    #     else:
-    #         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
-    #         print('trajo los inactivos')
-    #     data = {
-    #         "total": self.get_queryset().count(),
-    #         "totalNotFiltered": self.get_queryset().count(),
-    #         "rows": fijos_serializer.data
-    #     }
-    #     return Response(data, status=status.HTTP_200_OK)
+        data = {
+            "total": self.get_queryset().count(),
+            "totalNotFiltered": self.get_queryset().count(),
+            "rows": fijos_serializer.data
+        }
+        
+        return Response(data, status=status.HTTP_200_OK)    
+    
+    
 
     def create(self, request):
         # send information to serializer 
@@ -102,3 +115,20 @@ class FijosViewSet(viewsets.ModelViewSet):
             return Response({'message':'empleado fijo eliminado correctamente!'}, status=status.HTTP_200_OK)
             return Response({'error':'No existe un empleado fijo con estos datos!'}, status=status.HTTP_400_BAD_REQUEST)
         
+        
+        
+    # def list(self, request):
+    #     print('paso list')
+    #     tipo_fijo = request.data['tipo']
+    #     if tipo_fijo == int(0):
+    #         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = True), many=True)
+    #         print('trajo los activos')
+    #     else:
+    #         fijos_serializer = self.get_serializer(Fijos.objects.filter(state = False), many=True)
+    #         print('trajo los inactivos')
+    #     data = {
+    #         "total": self.get_queryset().count(),
+    #         "totalNotFiltered": self.get_queryset().count(),
+    #         "rows": fijos_serializer.data
+    #     }
+    #     return Response(data, status=status.HTTP_200_OK)
