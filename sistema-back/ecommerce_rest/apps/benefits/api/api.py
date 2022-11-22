@@ -120,6 +120,9 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 print(diff_paso, 'diferencia de fechas a años:')
                 if diff.years != 0 :
                     dias_prestaciones = 5 + diff.years 
+                    antiguedad = 30*diff.years
+                elif diff.years == 0:
+                    antiguedad = 15
                 apartado_mensual = round (salario_integral * dias_prestaciones, 2)
                 acumulado = round (apartado_mensual) 
                 intereses= 0
@@ -127,7 +130,7 @@ class BenefitsViewSet(viewsets.ModelViewSet):
                 b = Benefits(salario_basico_mensual=salario_mensual,salario_basico_diario=round_salario, utilidades_diario=utilidades_diario,
                         bono_vacional_diario=bono_vacional_diario,salario_integral_diario=salario_integral,dias_prestaciones=dias_prestaciones,
                         apartado_mensual=apartado_mensual, anticipo=0, acumulado=acumulado,tasa=tasa,intereses=intereses, 
-                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha_actualstr, id_name = val, datefin=fecha_inicial)
+                        intereses_prestaciones=intereses_prestaciones,date_tasa=fecha_actualstr, id_name = val, datefin=fecha_inicial, antiguedad=antiguedad)
                 b.save()
 
             
