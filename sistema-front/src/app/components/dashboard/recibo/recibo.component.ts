@@ -11,6 +11,8 @@ import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es-VE';
 import { MatTableDataSource } from '@angular/material/table';
 registerLocaleData(localeES, 'es-VE');
+
+
 @Component({
   selector: 'app-recibo',
   templateUrl: './recibo.component.html',
@@ -18,6 +20,7 @@ registerLocaleData(localeES, 'es-VE');
 })
 export class ReciboComponent implements OnInit {
   CurrentDate = new Date();
+  date = new Date();
   motivo: any[] = ['Renuncia', 'Despido']
   anio: number;
   misdatos : any;
@@ -31,12 +34,15 @@ export class ReciboComponent implements OnInit {
   intereses: any;
   anticipo: any;
   total: any;
+  total_deducciones: any;
+  total_asignaciones: any;
+  diferencia_meses: any;
   dataSource = new MatTableDataSource(this.benefits);
 
   constructor(
     private fijos: FijosServices,
     private beneficios: BenefitsServices,
-    private ruta: ActivatedRoute,    
+    private ruta: ActivatedRoute,   
   ) { 
     this.anio = new Date().getFullYear();
     
@@ -60,6 +66,8 @@ export class ReciboComponent implements OnInit {
     result.rows.map((emplea:any) => {
       if (emplea.id == params.id){
         this.empleado = emplea;
+        this.diferencia_meses = this.empleado.date
+        console.log(this.diferencia_meses)
         // this.vacaciones = emplea.dias_frac
         // console.log(this.vacaciones)
       } 
@@ -67,7 +75,7 @@ export class ReciboComponent implements OnInit {
   });
   this.beneficios.getAllBenefits(params.id).subscribe(result => {
     this.benefits = result.rows.at(-1); //rows viene de la consola , trae el ultimo registro
-    // console.log(this.benefits);
+    console.log(this.benefits);
     this.apartado = result.apartado.apartado_mensual__sum;
     // console.log(this.apartado);
     this.integral = result.total_integral
@@ -79,7 +87,8 @@ export class ReciboComponent implements OnInit {
     this.dataSource.data = [];
     this.dataSource.data = this.benefits;
     this.total = this.integral + this.intereses + this.empleado.total_vacaciones_frac + this.empleado.total_bono_frac + this.empleado.total_utilidades
-
+    this.total_deducciones = this.anticipo + this.empleado.total_utilidades*0.005 
+    this.total_asignaciones = this.total - this.total_deducciones
   });
   // this.fijos.enviarVacaciones(params.id).subscribe((result: any) => {
   //   console.log(result)
